@@ -1,0 +1,52 @@
+.tech-card {
+  align-items: center;
+  background: $color-green;
+  border-radius: .25rem;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  padding: .5rem;
+  position: relative;
+  width: $tech-logo-size * 1.8;
+
+  &:before {
+    border: 1px solid $color-green;
+    border-radius: .25rem;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    transform-origin: top left;
+    transform: translate(-.5rem, -.5rem);
+    top: 0;
+    width: 100%;
+  }
+
+}
+
+.tech-card--logo {
+  height: $tech-logo-size;
+  width: $tech-logo-size;
+  margin: 0;
+}
+
+.tech-card--title {
+  font-size: $text-medium;
+  margin: .5rem;
+}
+
+.tech-card--date {
+  font-size: $text-small;
+  font-weight: bold;
+
+  &:before {
+    content: 'Release: ';
+  }
+
+}
+
+.tech-card--desc {
+  font-size: $text-small;
+  text-align: center;
+  padding: 1rem;
+}
