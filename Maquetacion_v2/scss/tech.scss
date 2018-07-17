@@ -18,8 +18,14 @@
     position: absolute;
     transform-origin: top left;
     transform: translate(-.5rem, -.5rem);
+    transition-property: transform;
+    transition-duration: 250ms;
     top: 0;
     width: 100%;
+  }
+
+  &:hover:before {
+    transform: translate(.5rem, .5rem);
   }
 
 }
