@@ -1,16 +1,23 @@
-$color-blue: #00ADEE;
-$color-green: #BED23C;
-$color-grey: #C4C4C4;
-
-$nav-height: 70px;
-$nav-logo-height: 30px;
-$title-decoration-height: 90px;
-$title-decoration-width: 70px;
-$tech-logo-size: 100px;
-$text-big: 24px;
-$text-medium: 16px;
-$text-small: 12px;
-
 body {
   font-family: Roboto, 'sans-serif';
+}
+
+.tools-section {
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin: 2rem auto 3rem;
+
+  .title {
+    width: 100%;
+    flex: 1;
+  }
+}
+
+.tech-cards {
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 940px;
 }
