@@ -9,8 +9,8 @@ body {
 
 .tools-section {
   align-items: center;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-auto-flow: row;
   margin: 32px auto 48px;
   max-width: 1000px;
   position: relative;
@@ -19,6 +19,7 @@ body {
     flex: 1;
     width: 100%;
   }
+
 }
 
 .tools-section:first-child {
@@ -26,7 +27,9 @@ body {
 }
 
 .tech-cards {
+  align-self: center;
   display: grid;
+  justify-self: center;
   grid-template-columns: repeat(3, 1fr);
   max-width: 940px;
 }
