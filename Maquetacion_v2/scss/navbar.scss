@@ -1,16 +1,16 @@
 .navbar {
   align-items: center;
   background-color: white;
-  box-shadow: 0 .1rem .25rem rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   display: flex;
   height: $nav-height;
-  left: 0;
   justify-content: space-between;
+  left: 0;
+  padding: 24px 16px;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 10;
-  padding: 1.5rem 1rem;
 
   .navbar--logo {
     height: 100%;
