@@ -26,7 +26,14 @@ body {
 }
 
 .tech-cards {
-  display: flex;
-  flex-flow: row wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   max-width: 940px;
 }
+
+.tech-card:first-child {
+  grid-row: span 2;
+  justify-content: center;
+  border-right: 2px solid $color-green;
+}
+
