@@ -1,0 +1,24 @@
+.navbar {
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 .1rem .25rem rgba(0,0,0,0.1);
+  display: flex;
+  height: $nav-height;
+  left: 0;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  padding: 1.5rem 1rem;
+
+  .navbar--logo {
+    height: 100%;
+    max-height: $nav-height - 48px; // Fix for Safari
+  }
+
+  .navbar--title {
+    font-size: $text-medium;
+  }
+
+}
