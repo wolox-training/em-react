@@ -56,3 +56,11 @@
   text-align: center;
   padding: 16px;
 }
+
+@media screen and (max-width: 1024px) {
+  .tech-card:not(:last-child) {
+    border: 1px solid $color-green;
+    border-width: 0 0 2px 0;
+    // border-color: $color-green;
+  }
+}

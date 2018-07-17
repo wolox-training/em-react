@@ -40,3 +40,23 @@ body {
   border-right: 2px solid $color-green;
 }
 
+@media screen and (max-width: 1024px) {
+
+  .tools-section {
+    justify-content: center;
+  }
+
+  .tools-section:first-child {
+    margin-top: unset;
+  }
+
+  .tech-cards {
+    grid-template-columns: unset;
+    grid-auto-flow: row;
+  }
+
+  .tech-card:first-child {
+    grid-row: span 1;
+  }
+}
+
