@@ -2,7 +2,7 @@
   background-color: $color-blue;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 16px;
 
   .footer--logo-slogan {
     align-items: center;
@@ -17,7 +17,7 @@
     .footer--slogan {
       color: white;
       font-size: $text-medium;
-      padding: .5rem;
+      padding: 8px;
       text-transform: uppercase;
     }
 
@@ -28,7 +28,7 @@
     color: white;
     font-size: $text-small;
     justify-self: flex-end;
-    padding: 1rem .2rem 0;
+    padding: 16px 4px 0;
   }
 
 }
