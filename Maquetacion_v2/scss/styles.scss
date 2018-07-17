@@ -21,6 +21,10 @@ body {
   }
 }
 
+.tools-section:first-child {
+  margin-top: 0;
+}
+
 .tech-cards {
   display: flex;
   flex-flow: row wrap;
