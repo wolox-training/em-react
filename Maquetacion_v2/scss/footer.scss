@@ -30,3 +30,12 @@
     padding: 16px 4px 0;
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .footer {
+    .footer--rights {
+      align-self: center;
+      justify-self: center;
+    }
+  }
+}

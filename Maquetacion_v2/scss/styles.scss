@@ -34,7 +34,26 @@ body {
 }
 
 .tech-card:first-child {
+  border-right: 2px solid $color-green;
   grid-row: span 2;
   justify-content: center;
-  border-right: 2px solid $color-green;
+}
+
+@media screen and (max-width: 1024px) {
+  .tools-section {
+    justify-content: center;
+
+    &::first-child {
+      margin-top: unset;
+    }
+  }
+
+  .tech-cards {
+    grid-auto-flow: row;
+    grid-template-columns: unset;
+  }
+
+  .tech-card:first-child {
+    grid-row: span 1;
+  }
 }
