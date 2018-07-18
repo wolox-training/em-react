@@ -12,12 +12,12 @@
   width: 100%;
   z-index: 10;
 
-  .navbar--logo {
+  .navbar-logo {
     height: 100%;
     max-height: $nav-height - 48px; // Fix for Safari
   }
 
-  .navbar--title {
+  .navbar-title {
     font-size: $text-medium;
   }
 }
