@@ -1,32 +1,11 @@
 .tech-card {
   align-items: center;
-  // background: $color-green;
-  // border-radius: 5px;
   display: flex;
   flex-direction: column;
   margin: 16px;
   padding: 8px;
   position: relative;
   width: $tech-logo-size * 2;
-
-  // &:before {
-  //   border: 1px solid $color-green;
-  //   border-radius: 4px;
-  //   content: '';
-  //   height: 100%;
-  //   left: 0;
-  //   position: absolute;
-  //   top: 0;
-  //   transform-origin: top left;
-  //   transform: translate(-10px, -10px);
-  //   transition-property: transform;
-  //   transition-duration: 250ms;
-  //   width: 100%;
-  // }
-
-  // &:hover:before {
-  //   transform: translate(10px, 10px);
-  // }
 
   .card-logo {
     height: $tech-logo-size;
