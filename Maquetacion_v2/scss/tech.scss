@@ -7,7 +7,7 @@
   margin: 16px;
   padding: 8px;
   position: relative;
-  width: $tech-logo-size * 1.8;
+  width: $tech-logo-size * 2;
 
   &:before {
     border: 1px solid $color-green;
@@ -16,16 +16,16 @@
     height: 100%;
     left: 0;
     position: absolute;
+    top: 0;
     transform-origin: top left;
     transform: translate(-10px, -10px);
-    top: 0;
     width: 100%;
   }
 
   .card-logo {
     height: $tech-logo-size;
-    width: $tech-logo-size;
     margin: 0;
+    width: $tech-logo-size;
   }
   
   .card-title {
