@@ -11,7 +11,7 @@
 
   &:before {
     border: 1px solid $color-green;
-    border-radius: 5px;
+    border-radius: 4px;
     content: '';
     height: 100%;
     left: 0;
@@ -19,7 +19,13 @@
     top: 0;
     transform-origin: top left;
     transform: translate(-10px, -10px);
+    transition-property: transform;
+    transition-duration: 250ms;
     width: 100%;
+  }
+
+  &:hover:before {
+    transform: translate(10px, 10px);
   }
 
   .card-logo {
