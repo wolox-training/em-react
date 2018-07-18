@@ -27,26 +27,26 @@
   &:hover:before {
     transform: translate(10px, 10px);
   }
-}
 
-.tech-card--logo {
-  height: $tech-logo-size;
-  margin: 0;
-  width: $tech-logo-size;
-}
-
-.tech-card--title {
-  font-size: $text-medium;
-  margin: 8px;
-}
-
-.tech-card--date {
-  font-size: $text-small;
-  font-weight: bold;
-}
-
-.tech-card--desc {
-  font-size: $text-small;
-  text-align: center;
-  padding: 16px;
+  .card-logo {
+    height: $tech-logo-size;
+    margin: 0;
+    width: $tech-logo-size;
+  }
+  
+  .card-title {
+    font-size: $text-medium;
+    margin: 10px;
+  }
+  
+  .card-date {
+    font-size: $text-small;
+    font-weight: bold;
+  }
+  
+  .card-desc {
+    font-size: $text-small;
+    text-align: center;
+    padding: 16px;
+  }
 }
