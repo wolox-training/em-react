@@ -1,5 +1,6 @@
 .title {
   background: url('./res/images/layout/triangle.svg') no-repeat;
+  font-size: $text-big;
   line-height: $title-decoration-height;
-  text-indent: 37px;
+  text-indent: $title-decoration-width - 18px;
 }
