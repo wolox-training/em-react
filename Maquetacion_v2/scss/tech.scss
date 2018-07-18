@@ -1,7 +1,5 @@
 .tech-card {
   align-items: center;
-  // background: $color-green;
-  // border-radius: 5px;
   display: flex;
   flex-direction: column;
   margin: 16px;
@@ -9,52 +7,27 @@
   position: relative;
   width: $tech-logo-size * 2;
 
-  // &:before {
-  //   border: 1px solid $color-green;
-  //   border-radius: 4px;
-  //   content: '';
-  //   height: 100%;
-  //   left: 0;
-  //   position: absolute;
-  //   top: 0;
-  //   transform-origin: top left;
-  //   transform: translate(-10px, -10px);
-  //   transition-property: transform;
-  //   transition-duration: 250ms;
-  //   width: 100%;
-  // }
-
-  // &:hover:before {
-  //   transform: translate(10px, 10px);
-  // }
-
-}
-
-.tech-card--logo {
-  height: $tech-logo-size;
-  margin: 0;
-  width: $tech-logo-size;
-}
-
-.tech-card--title {
-  font-size: $text-medium;
-  margin: 8px;
-}
-
-.tech-card--date {
-  font-size: $text-small;
-  font-weight: bold;
-
-  &:before {
-    content: 'Release: ';
+  .card-logo {
+    height: $tech-logo-size;
+    margin: 0;
+    width: $tech-logo-size;
   }
-
-}
-
-.tech-card--desc {
-  font-size: $text-small;
-  text-align: center;
-  padding: 16px;
+  
+  .card-title {
+    font-size: $text-medium;
+    margin: 10px;
+  }
+  
+  .card-date {
+    font-size: $text-small;
+    font-weight: bold;
+  }
+  
+  .card-desc {
+    font-size: $text-small;
+    text-align: center;
+    padding: 16px;
+  }
 }
 
 @media screen and (max-width: 1024px) {

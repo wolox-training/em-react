@@ -4,33 +4,31 @@
   flex-direction: column;
   padding: 16px;
 
-  .footer--logo-slogan {
+  .footer-logo-slogan {
     align-items: center;
     display: flex;
     flex-direction: column;
     width: 100%;
 
-    .footer--logo {
+    .footer-logo {
       height: 45px;
     }
 
-    .footer--slogan {
+    .footer-slogan {
       color: white;
       font-size: $text-medium;
       padding: 8px;
       text-transform: uppercase;
     }
-
   }
 
-  .footer--rights {
+  .footer-rights {
     align-self: flex-end;
     color: white;
     font-size: $text-small;
     justify-self: flex-end;
     padding: 16px 4px 0;
   }
-
 }
 
 
