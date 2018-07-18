@@ -27,7 +27,6 @@
   &:hover:before {
     transform: translate(10px, 10px);
   }
-
 }
 
 .tech-card--logo {
@@ -44,11 +43,6 @@
 .tech-card--date {
   font-size: $text-small;
   font-weight: bold;
-
-  &:before {
-    content: 'Release: ';
-  }
-
 }
 
 .tech-card--desc {
