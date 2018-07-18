@@ -21,7 +21,6 @@
     top: 0;
     width: 100%;
   }
-
 }
 
 .tech-card--logo {
@@ -38,11 +37,6 @@
 .tech-card--date {
   font-size: $text-small;
   font-weight: bold;
-
-  &:before {
-    content: 'Release: ';
-  }
-
 }
 
 .tech-card--desc {
