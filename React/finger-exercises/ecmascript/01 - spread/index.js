@@ -19,7 +19,6 @@ export function copy(obj) {
   return newObj;
 }
 
-
 export function reverseMerge(...args) {
   const output = [];
   const reverseArgs = args.reverse();
