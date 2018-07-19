@@ -27,7 +27,7 @@ describe('Spread operator', () => {
     expect(example).toEqual({ a: 1, b: 2, c: 3 });
     expect(copiedExample).toEqual({ a: 1, b: 2 });
   });
-  xit('copy can copy arrays', () => {
+  it('copy can copy arrays', () => {
     const example = [];
     const copiedExample = copy(example);
 
@@ -38,12 +38,12 @@ describe('Spread operator', () => {
     expect(example).toEqual([1]);
     expect(copiedExample).toEqual([]);
   });
-  xit('reverseMerge returns a new array based on two, but it switches the order of them', () => {
+  it('reverseMerge returns a new array based on two, but it switches the order of them', () => {
     expect(reverseMerge([1], [2])).toBe([2, 1]);
     expect(reverseMerge([1, 1, 1], [3, 2])).toBe([3, 2, 1, 1, 1]);
     expect(reverseMerge([1, 2], [3, 4, 5])).toBe([3, 4, 5, 1, 2]);
   });
-  xit('filterAttribs filters \'a\' and \'b\' by default', () => {
+  it('filterAttribs filters \'a\' and \'b\' by default', () => {
     expect(filterAttribs({ a: 1, b: 2, c: 3 })).toBe({ c: 3 });
     expect(filterAttribs({ b: 1, a: 2, c: 3 })).toBe({ c: 3 });
     expect(filterAttribs({

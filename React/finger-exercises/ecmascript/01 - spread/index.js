@@ -14,6 +14,22 @@ export function min(...args) {
   return Math.min(...newArgs);
 }
 
-export function copy() {
+export function copy(obj) {
+  const newObj = obj.constructor === Object ? { ...obj } : [...obj];
+  return newObj;
+}
 
+
+export function reverseMerge(...args) {
+  const output = [];
+  const reverseArgs = args.reverse();
+  reverseArgs.forEach(arg => {
+    output.push(...arg);
+  });
+  return (output);
+}
+
+export function filterAttribs(obj) {
+  const { a, b, ...z } = obj;
+  return z;
 }
