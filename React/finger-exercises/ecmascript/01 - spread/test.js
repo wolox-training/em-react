@@ -1,22 +1,22 @@
 import { min, copy, reverseMerge, filterAttribs } from '.';
 
 describe('Spread operator', () => {
-  xit('min returns the param if is the only argument', () => {
+  it('min returns the param if is the only argument', () => {
     expect(min(1)).toBe(1);
     expect(min(2)).toBe(2);
   });
-  xit('min can return the minimum based on a list', () => {
+  it('min can return the minimum based on a list', () => {
     expect(min([1, 2])).toBe(1);
     expect(min([2, 1])).toBe(1);
   });
-  xit('min can return the minimum based on many parameters', () => {
+  it('min can return the minimum based on many parameters', () => {
     expect(min(1, 2, 3, 4, 5, 0)).toBe(0);
     expect(min(1, 2, 3, 4, -1, 0)).toBe(-1);
   });
-  xit('min returns undefined on no args', () => {
+  it('min returns undefined on no args', () => {
     expect(min()).toBe(undefined);
   });
-  xit('copy can copy objects', () => {
+  it('copy can copy objects', () => {
     const example = { a: 1, b: 2 };
     const copiedExample = copy(example);
 
@@ -27,7 +27,7 @@ describe('Spread operator', () => {
     expect(example).toEqual({ a: 1, b: 2, c: 3 });
     expect(copiedExample).toEqual({ a: 1, b: 2 });
   });
-  xit('copy can copy arrays', () => {
+  it('copy can copy arrays', () => {
     const example = [];
     const copiedExample = copy(example);
 
@@ -38,12 +38,12 @@ describe('Spread operator', () => {
     expect(example).toEqual([1]);
     expect(copiedExample).toEqual([]);
   });
-  xit('reverseMerge returns a new array based on two, but it switches the order of them', () => {
+  it('reverseMerge returns a new array based on two, but it switches the order of them', () => {
     expect(reverseMerge([1], [2])).toBe([2, 1]);
     expect(reverseMerge([1, 1, 1], [3, 2])).toBe([3, 2, 1, 1, 1]);
     expect(reverseMerge([1, 2], [3, 4, 5])).toBe([3, 4, 5, 1, 2]);
   });
-  xit('filterAttribs filters \'a\' and \'b\' by default', () => {
+  it('filterAttribs filters \'a\' and \'b\' by default', () => {
     expect(filterAttribs({ a: 1, b: 2, c: 3 })).toBe({ c: 3 });
     expect(filterAttribs({ b: 1, a: 2, c: 3 })).toBe({ c: 3 });
     expect(filterAttribs({
