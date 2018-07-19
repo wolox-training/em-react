@@ -39,15 +39,15 @@ describe('Spread operator', () => {
     expect(copiedExample).toEqual([]);
   });
   it('reverseMerge returns a new array based on two, but it switches the order of them', () => {
-    expect(reverseMerge([1], [2])).toBe([2, 1]);
-    expect(reverseMerge([1, 1, 1], [3, 2])).toBe([3, 2, 1, 1, 1]);
-    expect(reverseMerge([1, 2], [3, 4, 5])).toBe([3, 4, 5, 1, 2]);
+    expect(reverseMerge([1], [2])).toEqual([2, 1]);
+    expect(reverseMerge([1, 1, 1], [3, 2])).toEqual([3, 2, 1, 1, 1]);
+    expect(reverseMerge([1, 2], [3, 4, 5])).toEqual([3, 4, 5, 1, 2]);
   });
   it('filterAttribs filters \'a\' and \'b\' by default', () => {
-    expect(filterAttribs({ a: 1, b: 2, c: 3 })).toBe({ c: 3 });
-    expect(filterAttribs({ b: 1, a: 2, c: 3 })).toBe({ c: 3 });
+    expect(filterAttribs({ a: 1, b: 2, c: 3 })).toEqual({ c: 3 });
+    expect(filterAttribs({ b: 1, a: 2, c: 3 })).toEqual({ c: 3 });
     expect(filterAttribs({
       b: 1, d: 2, c: 3, e: 1
-    })).toBe({ c: 3, d: 2, e: 1 });
+    })).toEqual({ c: 3, d: 2, e: 1 });
   });
 });
