@@ -3,7 +3,7 @@ import { createStore, combineReducers } from 'redux';
 import { xIsNext } from './turns/reducer';
 
 const rootReducer = combineReducers({
-  xIsNext
+  turns: xIsNext
 });
 
 export default function setupStore(initialState) {

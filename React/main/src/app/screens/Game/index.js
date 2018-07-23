@@ -83,7 +83,7 @@ class Game extends Component {
 }
 
 const mapStateToProps = state => ({
-  xIsNext: state.xIsNext
+  xIsNext: state.turns.xIsNext
 });
 
 const mapDispatchToProps = dispatch => ({

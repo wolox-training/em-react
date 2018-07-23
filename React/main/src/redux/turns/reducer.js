@@ -2,10 +2,13 @@ const initialState = {
   xIsNext: true
 };
 
-export function xIsNext(state = initialState.xIsNext, action) {
+export function xIsNext(state = initialState, action) {
   switch (action.type) {
     case 'X_IS_NEXT':
-      return action.xIsNext;
+      return {
+        ...state,
+        xIsNext: action.xIsNext
+      };
     default:
       return state;
   }
