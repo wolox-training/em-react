@@ -41,9 +41,9 @@ class Game extends Component {
   };
 
   jumpTo = step => {
+    this.props.toggleXIsNext(step % 2 === 0);
     this.setState({
       stepNumber: step
-      // xIsNext: step % 2 === 0
     });
   };
 
