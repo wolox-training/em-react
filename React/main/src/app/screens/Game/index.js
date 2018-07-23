@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Board from '~components/Board';
 
 import style from './styles.scss';
 
-class Game extends React.Component {
+class Game extends Component {
   render() {
     return (
       <div className="game">

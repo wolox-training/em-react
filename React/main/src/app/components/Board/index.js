@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Square from '~components/Square';
 
 import style from './styles.scss';
 
-class Board extends React.Component {
+class Board extends Component {
   renderSquare(i) {
     return <Square />;
   }
