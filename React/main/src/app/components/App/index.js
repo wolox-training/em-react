@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Game from '~screens/Game';
 
-class App extends Component {
-  render() {
-    return <Game />;
-  }
+function App() {
+  return <Game />;
 }
 
 export default App;
