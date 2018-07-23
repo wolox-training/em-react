@@ -4,9 +4,7 @@ import Game from '~screens/Game';
 
 class App extends Component {
   render() {
-    return (
-      <Game />
-    );
+    return <Game />;
   }
 }
 
