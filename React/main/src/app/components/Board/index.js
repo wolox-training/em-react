@@ -6,7 +6,7 @@ import style from './styles.scss';
 
 class Board extends Component {
   renderSquare(i) {
-    return <Square />;
+    return <Square value={i}/>;
   }
 
   render() {
