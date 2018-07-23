@@ -10,7 +10,6 @@ export function delay(time) {
   });
 }
 
-export async function asyncDelay(time) {
-  const start = Date.now();
-  return new Promise((resolve) => setTimeout(() => resolve(Date.now() - start), time));
+export function asyncDelay(time) {
+  return delay(time);
 }
