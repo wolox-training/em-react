@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 
 import style from './styles.scss';
 
-const Square = props => {
-  return (
-    <button className={style.square} onClick={() => props.onClick()}>
-      {props.value}
-    </button>
-  );
-};
+const Square = props => (
+  <button className={style.square} onClick={() => props.onClick()}>
+    {props.value}
+  </button>
+);
 
 Square.propTypes = {
   onClick: PropTypes.func,
