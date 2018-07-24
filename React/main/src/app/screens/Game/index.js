@@ -38,9 +38,9 @@ class Game extends Component {
     const history = this.state.history.slice(0, this.props.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
-    if (calculateWinner(squares || squares[i])) {
-      return;
-    }
+
+    if (calculateWinner(squares)) return;
+
     squares[i] = this.props.xIsNext ? STRINGS.X : STRINGS.O;
 
     this.props.toggleXIsNext(!this.props.xIsNext);
