@@ -35,11 +35,12 @@ class Game extends Component {
   };
 
   handleClick = i => {
+    const { winningMoves } = this.props;
     const history = this.state.history.slice(0, this.props.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
 
-    if (calculateWinner(squares)) return;
+    if (calculateWinner(squares, winningMoves)) return;
 
     squares[i] = this.props.xIsNext ? STRINGS.X : STRINGS.O;
 
@@ -62,11 +63,11 @@ class Game extends Component {
 
   render() {
     const { history } = this.state;
-    const { stepNumber } = this.props;
+    const { stepNumber, winningMoves } = this.props;
 
     const current = history[stepNumber];
     const moves = this.getMovesHistory();
-    const winner = calculateWinner(current.squares);
+    const winner = calculateWinner(current.squares, winningMoves);
     const status = winner
       ? `Winner: ${winner}`
       : `Next player: ${this.props.xIsNext ? STRINGS.X : STRINGS.O}`;
@@ -99,7 +100,8 @@ Game.propTypes = {
   xIsNext: PropTypes.bool.isRequired,
   toggleXIsNext: PropTypes.func.isRequired,
   stepNumber: PropTypes.number.isRequired,
-  addStep: PropTypes.func.isRequired
+  addStep: PropTypes.func.isRequired,
+  winningMoves: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
 };
 
 export default connect(

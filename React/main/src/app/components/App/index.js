@@ -5,19 +5,25 @@ import Game from '~screens/Game';
 
 import setupStore from '~/../redux/store';
 
-import UsersService from '../../../services/UsersService';
+import WinningMovesService from '../../../services/WinningMovesService';
 
 const store = setupStore();
 
 class App extends Component {
-  async componentDidMount() {
-    console.log(await UsersService.getUser(1));
+  state = {
+    moves: []
+  };
+
+  async componentWillMount() {
+    const res = await WinningMovesService.getWinningMoves();
+    if (res.data.length) this.setState({ moves: res.data });
   }
 
   render() {
+    const { moves } = this.state;
     return (
       <Provider store={store}>
-        <Game />
+        <Game winningMoves={moves} />
       </Provider>
     );
   }
