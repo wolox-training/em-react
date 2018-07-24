@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 
 import Board from '~components/Board';
 
-import { calculateWinner } from '~/../utils';
+import { STRINGS } from '~/../global/constants';
+
+import { calculateWinner } from '~/../global/utils';
 
 import { toggleXIsNext } from '~/../redux/turns/actions';
 
@@ -29,7 +31,7 @@ class Game extends Component {
     if (calculateWinner(squares || squares[i])) {
       return;
     }
-    squares[i] = this.props.xIsNext ? 'X' : 'O';
+    squares[i] = this.state.xIsNext ? STRINGS.X : STRINGS.O;
     this.setState({
       history: history.concat([
         {
@@ -48,8 +50,8 @@ class Game extends Component {
   };
 
   render() {
-    const history = this.state.history;
-    const current = history[this.state.stepNumber];
+    const { history, stepNumber } = this.state;
+    const current = history[stepNumber];
     const winner = calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
@@ -65,7 +67,7 @@ class Game extends Component {
     if (winner) {
       status = `Winner: ${winner}`;
     } else {
-      status = `Next player: ${this.props.xIsNext ? 'X' : 'O'}`;
+      status = `Next player: ${this.state.xIsNext ? STRINGS.X : STRINGS.O}`;
     }
 
     return (
