@@ -2,27 +2,11 @@ import React, { Component } from 'react';
 
 import Board from '~components/Board';
 
-import style from './styles.scss';
+import { STRINGS } from '~/../global/constants';
 
-function calculateWinner(squares) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-  ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-  return null;
-}
+import { calculateWinner } from '~/../global/utils';
+
+import style from './styles.scss';
 
 class Game extends Component {
   state = {
@@ -42,7 +26,7 @@ class Game extends Component {
     if (calculateWinner(squares || squares[i])) {
       return;
     }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    squares[i] = this.state.xIsNext ? STRINGS.X : STRINGS.O;
     this.setState({
       history: history.concat([
         {
@@ -62,8 +46,8 @@ class Game extends Component {
   };
 
   render() {
-    const history = this.state.history;
-    const current = history[this.state.stepNumber];
+    const { history, stepNumber } = this.state;
+    const current = history[stepNumber];
     const winner = calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
@@ -79,7 +63,7 @@ class Game extends Component {
     if (winner) {
       status = `Winner: ${winner}`;
     } else {
-      status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
+      status = `Next player: ${this.state.xIsNext ? STRINGS.X : STRINGS.O}`;
     }
 
     return (
