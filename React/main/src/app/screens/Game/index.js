@@ -23,8 +23,8 @@ class Game extends Component {
     ]
   };
 
-  getMovesHistory = config => {
-    return config.map((step, move) => {
+  getMovesHistory = () => {
+    return this.state.history.map((step, move) => {
       const desc = move ? `Go to move #${move}` : `Go to game start`;
       return (
         <li key={move}>
@@ -65,7 +65,7 @@ class Game extends Component {
     const { stepNumber } = this.props;
 
     const current = history[stepNumber];
-    const moves = this.getMovesHistory(history);
+    const moves = this.getMovesHistory();
     const winner = calculateWinner(current.squares);
     const status = winner
       ? `Winner: ${winner}`
