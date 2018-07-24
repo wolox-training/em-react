@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 import Board from '~components/Board';
 
-import { calculateWinner, STRINGS } from '~/../global/constants';
+import { STRINGS } from '~/../global/constants';
+import { calculateWinner } from '~/../global/utils';
 
 import style from './styles.scss';
 
