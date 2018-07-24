@@ -1,9 +1,11 @@
 import { createStore, combineReducers } from 'redux';
 
-import { xIsNext } from './turns/reducer';
+import { turns } from './turns/reducer';
+import { steps } from './steps/reducer';
 
 const rootReducer = combineReducers({
-  turns: xIsNext
+  turns,
+  steps
 });
 
 export default function setupStore(initialState) {

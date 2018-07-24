@@ -10,6 +10,8 @@ import { calculateWinner } from '~/../global/utils';
 
 import { toggleXIsNext } from '~/../redux/turns/actions';
 
+import { addStep } from '~/../redux/steps/actions';
+
 import style from './styles.scss';
 
 class Game extends Component {
@@ -18,39 +20,38 @@ class Game extends Component {
       {
         squares: Array(9).fill(null)
       }
-    ],
-    stepNumber: 0
+    ]
   };
 
   handleClick = i => {
-    this.props.toggleXIsNext(!this.props.xIsNext);
-
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
+    const history = this.state.history.slice(0, this.props.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
     if (calculateWinner(squares || squares[i])) {
       return;
     }
-    squares[i] = this.state.xIsNext ? STRINGS.X : STRINGS.O;
+    squares[i] = this.props.xIsNext ? STRINGS.X : STRINGS.O;
+
+    this.props.toggleXIsNext(!this.props.xIsNext);
+    this.props.addStep(history.length);
+
     this.setState({
       history: history.concat([
         {
           squares
         }
-      ]),
-      stepNumber: history.length
+      ])
     });
   };
 
   jumpTo = step => {
     this.props.toggleXIsNext(step % 2 === 0);
-    this.setState({
-      stepNumber: step
-    });
+    this.props.addStep(step);
   };
 
   render() {
-    const { history, stepNumber } = this.state;
+    const { history } = this.state;
+    const { stepNumber } = this.props;
     const current = history[stepNumber];
     const winner = calculateWinner(current.squares);
 
@@ -67,7 +68,7 @@ class Game extends Component {
     if (winner) {
       status = `Winner: ${winner}`;
     } else {
-      status = `Next player: ${this.state.xIsNext ? STRINGS.X : STRINGS.O}`;
+      status = `Next player: ${this.props.xIsNext ? STRINGS.X : STRINGS.O}`;
     }
 
     return (
@@ -85,16 +86,20 @@ class Game extends Component {
 }
 
 const mapStateToProps = state => ({
-  xIsNext: state.turns.xIsNext
+  xIsNext: state.turns.xIsNext,
+  stepNumber: state.steps.stepNumber
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleXIsNext: xIsNext => dispatch(toggleXIsNext(xIsNext))
+  toggleXIsNext: xIsNext => dispatch(toggleXIsNext(xIsNext)),
+  addStep: step => dispatch(addStep(step))
 });
 
 Game.propTypes = {
   xIsNext: PropTypes.bool.isRequired,
-  toggleXIsNext: PropTypes.func.isRequired
+  toggleXIsNext: PropTypes.func.isRequired,
+  stepNumber: PropTypes.number.isRequired,
+  addStep: PropTypes.func.isRequired
 };
 
 export default connect(

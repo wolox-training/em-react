@@ -1,13 +1,13 @@
 const initialState = {
-  xIsNext: true
+  stepNumber: 0
 };
 
-export function turns(state = initialState, action) {
+export function steps(state = initialState, action) {
   switch (action.type) {
-    case 'TOGGLE_X_IS_NEXT':
+    case 'ADD_STEP':
       return {
         ...state,
-        xIsNext: action.xIsNext
+        stepNumber: action.step
       };
     default:
       return state;
