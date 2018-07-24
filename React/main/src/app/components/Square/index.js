@@ -12,7 +12,7 @@ const Square = ({ onClick, value }) => {
 };
 
 Square.propTypes = {
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
   value: PropTypes.string
 };
 
