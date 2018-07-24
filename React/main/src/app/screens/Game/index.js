@@ -23,6 +23,17 @@ class Game extends Component {
     ]
   };
 
+  getMovesHistory = config => {
+    return config.map((step, move) => {
+      const desc = move ? `Go to move #${move}` : `Go to game start`;
+      return (
+        <li key={move}>
+          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+        </li>
+      );
+    });
+  };
+
   handleClick = i => {
     const history = this.state.history.slice(0, this.props.stepNumber + 1);
     const current = history[history.length - 1];
@@ -52,24 +63,13 @@ class Game extends Component {
   render() {
     const { history } = this.state;
     const { stepNumber } = this.props;
+
     const current = history[stepNumber];
+    const moves = this.getMovesHistory(history);
     const winner = calculateWinner(current.squares);
-
-    const moves = history.map((step, move) => {
-      const desc = move ? `Go to move #${move}` : `Go to game start`;
-      return (
-        <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
-        </li>
-      );
-    });
-
-    let status;
-    if (winner) {
-      status = `Winner: ${winner}`;
-    } else {
-      status = `Next player: ${this.props.xIsNext ? STRINGS.X : STRINGS.O}`;
-    }
+    const status = winner
+      ? `Winner: ${winner}`
+      : `Next player: ${this.props.xIsNext ? STRINGS.X : STRINGS.O}`;
 
     return (
       <div className="game">
