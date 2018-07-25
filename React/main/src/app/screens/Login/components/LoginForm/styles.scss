@@ -9,11 +9,22 @@
   width: 100%;
 }
 
-.submit-button {
-  background-color: rgba(0,0,0,1);
+.submit-button,
+.disabled-submit-button {
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 100px;
+  margin-top: 10px;
+  outline: none;
 }
 
+.submit-button {
+  background-color: rgba(0,0,0,1);
+  cursor: pointer;
+}
+
+.disabled-submit-button {
+  background-color: rgba(0,0,0,.5);
+  cursor: disabled;
+}

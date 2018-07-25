@@ -1,7 +1,7 @@
 .custom-input {
   --font-size: 10px;
   position: relative;
-  margin: calc(var(--font-size) * 2);
+  margin: calc(var(--font-size) * 1.7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,20 +22,23 @@
   position: relative;
 }
 
-.error-message {
+.error-message,
+.hidden {
   display: block;
   width: calc(100% - 2px);
   position: absolute;
-  color: white;
-  background-color: red;
+  color: red;
   font-size: var(--font-size);
-  padding: calc(var(--font-size) / 2);
+  // padding: calc(var(--font-size) / 2);
   justify-self: flex-end;
   top: 100%;
-  transition: 400ms;
+  transition: 300ms;
+  opacity: 1;
+  z-index: -1;
 
   &.hidden {
     transform: translateY(-10px);
+    opacity: 0;
   }
 
 }

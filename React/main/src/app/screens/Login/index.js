@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 
-// import style from './styles.scss';
+import style from './styles.scss';
 import LoginForm from './components/LoginForm';
 
 class Login extends Component {
@@ -11,7 +11,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="login-page">
+      <div className={style['login-page']}>
         <LoginForm onSubmit={this.attemptLogin} />
       </div>
     );

@@ -11,7 +11,7 @@ const CustomInput = ({ name, input, label, meta }) => {
         {label}
       </label>
       <input className={style.input} {...input} name={name} />
-      <div className={[style['error-message'], showingError ? null : style.hidden]}> {meta.error} </div>
+      <div className={showingError ? style['error-message'] : style.hidden}> {meta.error} </div>
     </div>
   );
 };

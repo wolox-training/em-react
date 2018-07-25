@@ -11,6 +11,7 @@ import style from './styles.scss';
 // Somehow the onSubmit received from the parent is mapped to the handleSubmit... What?!
 
 const LoginForm = props => {
+  const { valid } = props;
   return (
     <form className={style['login-form']} onSubmit={props.handleSubmit}>
       <Field
@@ -27,7 +28,7 @@ const LoginForm = props => {
         type="password"
         validate={[minLength]}
       />
-      <button className={style['submit-button']} type="submit">
+      <button className={valid ? style['submit-button'] : style['disabled-submit-button']} type="submit">
         Log In!
       </button>
     </form>
