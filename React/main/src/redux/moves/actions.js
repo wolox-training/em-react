@@ -1,16 +1,11 @@
+import { createTypes } from 'redux-create-types';
+
 import WinningMovesService from '../../services/WinningMovesService';
 
-// export const actions = createTypes([
-//   'GET_WINNING_MOVES',
-//   'GET_WINNING_MOVES_SUCCESS',
-//   'GET_WINNING_MOVES_FAILURE'
-// ]);
-
-const actions = {
-  GET_WINNING_MOVES: 'GET_WINNING_MOVES',
-  GET_WINNING_MOVES_SUCCESS: 'GET_WINNING_MOVES_SUCCESS',
-  GET_WINNING_MOVES_FAILURE: 'GET_WINNING_MOVES_FAILURE'
-};
+export const actions = createTypes(
+  ['GET_WINNING_MOVES', 'GET_WINNING_MOVES_SUCCESS', 'GET_WINNING_MOVES_FAILURE'],
+  '@@WINNING_MOVES'
+);
 
 const actionCreators = {
   getWinningMoves: () => async dispatch => {

@@ -27,9 +27,7 @@ class Game extends Component {
   };
 
   async componentWillMount() {
-    // console.log(this.props.winningMoves);
     await this.props.movesActions.getWinningMoves();
-    // console.log(this.props.winningMoves);
   }
 
   getMovesHistory = () => {
@@ -72,11 +70,11 @@ class Game extends Component {
 
   render() {
     const { history } = this.state;
-    const { stepNumber } = this.props;
+    const { stepNumber, winningMoves } = this.props;
 
     const current = history[stepNumber];
     const moves = this.getMovesHistory();
-    const winner = calculateWinner(current.squares, this.props.winningMoves.moves);
+    const winner = calculateWinner(current.squares, winningMoves.moves);
     const status = winner
       ? `Winner: ${winner}`
       : `Next player: ${this.props.xIsNext ? STRINGS.X : STRINGS.O}`;
