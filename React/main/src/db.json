@@ -4,12 +4,16 @@
       "id": 1,
       "name": "Mr. X",
       "username": "mr_x",
+      "email": "mr_x@wolox.co",
+      "password": "wolox1189",
       "icon": "😎"
     },
     {
       "id": 2,
       "name": "Mr. O",
       "username": "mr_o",
+      "email": "mr_o@wolox.co",
+      "password": "wolox1189",
       "icon": "🤓"
     }
   ],

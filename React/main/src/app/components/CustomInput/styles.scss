@@ -1,0 +1,41 @@
+.custom-input {
+  --font-size: 10px;
+  position: relative;
+  margin: calc(var(--font-size) * 2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
+  font-size: var(--font-size);
+}
+
+.input {
+  font-size: calc(var(--font-size) * 1.5);
+  padding: calc(var(--font-size) / 2);
+  position: relative;
+}
+
+.error-message {
+  display: block;
+  width: calc(100% - 2px);
+  position: absolute;
+  color: white;
+  background-color: red;
+  font-size: var(--font-size);
+  padding: calc(var(--font-size) / 2);
+  justify-self: flex-end;
+  top: 100%;
+  transition: 400ms;
+
+  &.hidden {
+    transform: translateY(-10px);
+  }
+
+}

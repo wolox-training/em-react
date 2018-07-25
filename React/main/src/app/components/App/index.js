@@ -1,16 +1,18 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import Game from '~screens/Game';
-
 import setupStore from '~/../redux/store';
+
+// import Game from '~screens/Game';
+import Login from '../../screens/Login';
 
 const store = setupStore();
 
 function App() {
   return (
     <Provider store={store}>
-      <Game />
+      <Login />
+      {/* <Game /> */}
     </Provider>
   );
 }
