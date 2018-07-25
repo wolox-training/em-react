@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import Board from '~components/Board';
@@ -12,6 +13,8 @@ import { toggleXIsNext } from '~/../redux/turns/actions';
 
 import { addStep } from '~/../redux/steps/actions';
 
+import movesActions from '~/../redux/moves/actions';
+
 import style from './styles.scss';
 
 class Game extends Component {
@@ -22,6 +25,12 @@ class Game extends Component {
       }
     ]
   };
+
+  async componentWillMount() {
+    // console.log(this.props.winningMoves);
+    await this.props.movesActions.getWinningMoves();
+    // console.log(this.props.winningMoves);
+  }
 
   getMovesHistory = () => {
     return this.state.history.map((step, move) => {
@@ -40,7 +49,7 @@ class Game extends Component {
     const current = history[history.length - 1];
     const squares = current.squares.slice();
 
-    if (calculateWinner(squares, winningMoves)) return;
+    if (calculateWinner(squares, winningMoves.moves)) return;
 
     squares[i] = this.props.xIsNext ? STRINGS.X : STRINGS.O;
 
@@ -63,11 +72,11 @@ class Game extends Component {
 
   render() {
     const { history } = this.state;
-    const { stepNumber, winningMoves } = this.props;
+    const { stepNumber } = this.props;
 
     const current = history[stepNumber];
     const moves = this.getMovesHistory();
-    const winner = calculateWinner(current.squares, winningMoves);
+    const winner = calculateWinner(current.squares, this.props.winningMoves.moves);
     const status = winner
       ? `Winner: ${winner}`
       : `Next player: ${this.props.xIsNext ? STRINGS.X : STRINGS.O}`;
@@ -88,12 +97,14 @@ class Game extends Component {
 
 const mapStateToProps = state => ({
   xIsNext: state.turns.xIsNext,
-  stepNumber: state.steps.stepNumber
+  stepNumber: state.steps.stepNumber,
+  winningMoves: state.winningMoves
 });
 
 const mapDispatchToProps = dispatch => ({
   toggleXIsNext: xIsNext => dispatch(toggleXIsNext(xIsNext)),
-  addStep: step => dispatch(addStep(step))
+  addStep: step => dispatch(addStep(step)),
+  movesActions: bindActionCreators(movesActions, dispatch)
 });
 
 Game.propTypes = {
@@ -101,7 +112,8 @@ Game.propTypes = {
   toggleXIsNext: PropTypes.func.isRequired,
   stepNumber: PropTypes.number.isRequired,
   addStep: PropTypes.func.isRequired,
-  winningMoves: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
+  movesActions: PropTypes.objectOf(PropTypes.any),
+  winningMoves: PropTypes.objectOf(PropTypes.any)
 };
 
 export default connect(
