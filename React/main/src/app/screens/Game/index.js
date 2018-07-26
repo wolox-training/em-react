@@ -12,6 +12,8 @@ import { toggleXIsNext } from '~/../redux/turns/actions';
 
 import { addStep } from '~/../redux/steps/actions';
 
+import movesActions from '~/../redux/moves/actions';
+
 import style from './styles.scss';
 
 class Game extends Component {
@@ -22,6 +24,10 @@ class Game extends Component {
       }
     ]
   };
+
+  async componentDidMount() {
+    await this.props.getWinningMoves();
+  }
 
   getMovesHistory = () => {
     return this.state.history.map((step, move) => {
@@ -40,7 +46,7 @@ class Game extends Component {
     const current = history[history.length - 1];
     const squares = current.squares.slice();
 
-    if (calculateWinner(squares, winningMoves)) return;
+    if (calculateWinner(squares, winningMoves.moves)) return;
 
     squares[i] = this.props.xIsNext ? STRINGS.X : STRINGS.O;
 
@@ -67,7 +73,7 @@ class Game extends Component {
 
     const current = history[stepNumber];
     const moves = this.getMovesHistory();
-    const winner = calculateWinner(current.squares, winningMoves);
+    const winner = calculateWinner(current.squares, winningMoves.moves);
     const status = winner
       ? `Winner: ${winner}`
       : `Next player: ${this.props.xIsNext ? STRINGS.X : STRINGS.O}`;
@@ -88,12 +94,14 @@ class Game extends Component {
 
 const mapStateToProps = state => ({
   xIsNext: state.turns.xIsNext,
-  stepNumber: state.steps.stepNumber
+  stepNumber: state.steps.stepNumber,
+  winningMoves: state.winningMoves
 });
 
 const mapDispatchToProps = dispatch => ({
   toggleXIsNext: xIsNext => dispatch(toggleXIsNext(xIsNext)),
-  addStep: step => dispatch(addStep(step))
+  addStep: step => dispatch(addStep(step)),
+  getWinningMoves: () => dispatch(movesActions.getWinningMoves())
 });
 
 Game.propTypes = {
@@ -101,7 +109,8 @@ Game.propTypes = {
   toggleXIsNext: PropTypes.func.isRequired,
   stepNumber: PropTypes.number.isRequired,
   addStep: PropTypes.func.isRequired,
-  winningMoves: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
+  getWinningMoves: PropTypes.func.isRequired,
+  winningMoves: PropTypes.objectOf(PropTypes.any)
 };
 
 export default connect(

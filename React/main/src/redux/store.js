@@ -1,13 +1,16 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
 import { turns } from './turns/reducer';
 import { steps } from './steps/reducer';
+import { winningMoves } from './moves/reducer';
 
 const rootReducer = combineReducers({
   turns,
-  steps
+  steps,
+  winningMoves
 });
 
-export default function setupStore(initialState) {
-  return createStore(rootReducer, initialState);
+export default function setupStore() {
+  return createStore(rootReducer, applyMiddleware(thunk));
 }
