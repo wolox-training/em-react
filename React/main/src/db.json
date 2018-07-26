@@ -1,4 +1,14 @@
 {
+  "login": [
+    {
+      "username": "mr_x@wolox.co",
+      "password": "wolox1189"
+    },
+    {
+      "username": "mr_o@wolox.co",
+      "password": "wolox1189"
+    }
+  ],
   "users": [
     {
       "id": 1,

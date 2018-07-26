@@ -1,20 +1,41 @@
-import React from 'react';
-import { Provider } from 'react-redux';
+import React, { Fragment, Component } from 'react';
+import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import setupStore from '~/../redux/store';
+import Game from '~screens/Game';
 
-// import Game from '~screens/Game';
-import Login from '../../screens/Login';
+import Login from '~screens/Login';
 
-const store = setupStore();
+class App extends Component {
+  async componentDidMount() {
+    await this.checkLoggedInStatus();
+  }
 
-function App() {
-  return (
-    <Provider store={store}>
-      <Login />
-      {/* <Game /> */}
-    </Provider>
-  );
+  checkLoggedInStatus = () => true;
+
+  render() {
+    const { loggedIn } = this.props;
+    return (
+      <Router>
+        <Fragment>
+          <Route exact path="/">
+            <Redirect to={loggedIn ? '/game' : '/login'} />
+          </Route>
+          <Route path="/login" component={Login} />
+          <Route path="/game" component={Game} />
+        </Fragment>
+      </Router>
+    );
+  }
 }
 
-export default App;
+App.propTypes = {
+  loggedIn: PropTypes.bool.isRequired
+};
+
+const mapStateToProps = state => ({
+  loggedIn: state.auth.loggedIn
+});
+
+export default connect(mapStateToProps)(App);
