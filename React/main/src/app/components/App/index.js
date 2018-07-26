@@ -14,9 +14,9 @@ class App extends Component {
     moves: []
   };
 
-  async componentWillMount() {
+  async componentDidMount() {
     const res = await WinningMovesService.getWinningMoves();
-    if (res.data.length) this.setState({ moves: res.data });
+    if (res.data && res.data.length) this.setState({ moves: res.data });
   }
 
   render() {
