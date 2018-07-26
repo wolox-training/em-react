@@ -36,7 +36,8 @@ const LoginForm = props => {
 };
 
 LoginForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired
+  handleSubmit: PropTypes.func.isRequired,
+  valid: PropTypes.bool
 };
 
 export default reduxForm({
