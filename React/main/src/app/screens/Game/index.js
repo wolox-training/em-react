@@ -26,7 +26,7 @@ class Game extends Component {
     ]
   };
 
-  async componentWillMount() {
+  async componentDidMount() {
     await this.props.movesActions.getWinningMoves();
   }
 
