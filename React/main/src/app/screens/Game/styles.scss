@@ -1,8 +1,79 @@
 .game {
   display: flex;
   flex-direction: row;
+  position: relative;
 }
 
 .game-info {
-  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  position: absolute;
+  width: 100%;
+
+  .info-next {
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .info-moves {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+    li {
+      list-style: none;
+      padding: 0;
+
+      button {
+        background-color: white;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+        position: relative;
+        transition-duration: 250ms;
+        transition-property: transform;
+        width: 120px;
+
+        &:hover {
+          transform: scale(1.03);
+          z-index: 1;
+
+          &:before {
+            opacity: .6;
+            transition-duration: 250ms;
+            transition-property: opacity;
+          }
+        }
+        
+        &:before {
+          box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+          content: '';
+          height: 100%;
+          left: 0;
+          opacity: .3;
+          position: absolute;
+          top: 0;
+          transition-duration: 250ms;
+          transition-property: opacity;
+          width: 100%;
+          z-index: -1;
+        }
+      }
+      
+      &:first-child button,
+      &:first-child button:before{
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+      }
+
+      &:last-child button,
+      &:last-child button:before {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+    }
+  }
 }

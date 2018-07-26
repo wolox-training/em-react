@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -10,28 +9,34 @@ import LoginForm from './components/LoginForm';
 
 class Login extends Component {
   attemptLogin = values => {
-    this.props.authActions.logIn(values);
+    this.props.login(values);
   };
 
   render() {
+    const { loginError } = this.props;
     return (
       <div className={style['login-page']}>
         <LoginForm onSubmit={this.attemptLogin} />
+        <div className={loginError ? style['login-error'] : style['login-error-hidden']}>
+          <p>{loginError}</p>
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  loggedIn: state.auth.loggedIn
+  loggedIn: state.auth.loggedIn,
+  loginError: state.auth.error
 });
 
 const mapDispatchToProps = dispatch => ({
-  authActions: bindActionCreators(authActions, dispatch)
+  login: values => dispatch(authActions.logIn(values))
 });
 
 Login.propTypes = {
-  authActions: PropTypes.objectOf(PropTypes.any)
+  login: PropTypes.func,
+  loginError: PropTypes.string
 };
 
 export default connect(

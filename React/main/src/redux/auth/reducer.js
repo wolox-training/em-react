@@ -1,3 +1,5 @@
+import { actions } from './actions';
+
 const initialState = {
   error: null,
   isLoggingIn: false,
@@ -7,12 +9,18 @@ const initialState = {
 
 export function auth(state = initialState, action) {
   switch (action.type) {
-    case '@@AUTH.SET_LOGGING_IN':
+    case actions.SET_LOGGING_IN:
       return {
         ...state,
         isLoggingIn: action.payload
       };
-    case '@@AUTH.LOG_IN':
+    case actions.SET_ERROR:
+      return {
+        ...state,
+        isLoggingIn: false,
+        error: action.payload
+      };
+    case actions.LOG_IN:
       return {
         ...state,
         error: null,
@@ -20,7 +28,7 @@ export function auth(state = initialState, action) {
         loggedIn: true,
         token: action.payload
       };
-    case '@@AUTH.LOG_OUT':
+    case actions.LOG_OUT:
       return {
         ...state,
         error: null,

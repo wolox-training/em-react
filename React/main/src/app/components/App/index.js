@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import authActions from '~/../redux/auth/actions';
+
 import Game from '~screens/Game';
 
 import Login from '~screens/Login';
 
 class App extends Component {
   async componentDidMount() {
-    await this.checkLoggedInStatus();
+    await this.props.checkIfLoggedIn();
   }
-
-  checkLoggedInStatus = () => true;
 
   render() {
     const { loggedIn } = this.props;
@@ -31,11 +31,19 @@ class App extends Component {
 }
 
 App.propTypes = {
-  loggedIn: PropTypes.bool.isRequired
+  loggedIn: PropTypes.bool.isRequired,
+  checkIfLoggedIn: PropTypes.func
 };
 
 const mapStateToProps = state => ({
   loggedIn: state.auth.loggedIn
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  checkIfLoggedIn: () => dispatch(authActions.checkLoginStatus())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

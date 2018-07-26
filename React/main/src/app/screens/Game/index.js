@@ -84,8 +84,8 @@ class Game extends Component {
           <Board squares={current.squares} onClick={this.handleClick} />
         </div>
         <div className={style['game-info']}>
-          <div>{status}</div>
-          <ol>{moves}</ol>
+          <div className={style['info-next']}>{status}</div>
+          <ol className={style['info-moves']}>{moves}</ol>
         </div>
       </div>
     );
