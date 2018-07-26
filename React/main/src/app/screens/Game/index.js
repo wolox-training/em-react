@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import Board from '~components/Board';
@@ -26,8 +25,8 @@ class Game extends Component {
     ]
   };
 
-  async componentWillMount() {
-    await this.props.movesActions.getWinningMoves();
+  async componentDidMount() {
+    await this.props.getWinningMoves();
   }
 
   getMovesHistory = () => {
@@ -102,7 +101,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   toggleXIsNext: xIsNext => dispatch(toggleXIsNext(xIsNext)),
   addStep: step => dispatch(addStep(step)),
-  movesActions: bindActionCreators(movesActions, dispatch)
+  getWinningMoves: () => dispatch(movesActions.getWinningMoves())
 });
 
 Game.propTypes = {
@@ -110,7 +109,7 @@ Game.propTypes = {
   toggleXIsNext: PropTypes.func.isRequired,
   stepNumber: PropTypes.number.isRequired,
   addStep: PropTypes.func.isRequired,
-  movesActions: PropTypes.objectOf(PropTypes.any),
+  getWinningMoves: PropTypes.func.isRequired,
   winningMoves: PropTypes.objectOf(PropTypes.any)
 };
 

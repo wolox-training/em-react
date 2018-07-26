@@ -2,11 +2,13 @@
   "login": [
     {
       "username": "mr_x@wolox.co",
-      "password": "wolox1189"
+      "password": "wolox1189",
+      "token": "token_1"
     },
     {
       "username": "mr_o@wolox.co",
-      "password": "wolox1189"
+      "password": "wolox1189",
+      "token": "token_2"
     }
   ],
   "users": [

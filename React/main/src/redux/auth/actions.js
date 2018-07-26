@@ -6,18 +6,25 @@ export const actions = createTypes(['SET_LOGGING_IN', 'LOG_IN', 'LOG_OUT'], '@@A
 
 const actionCreators = {
   logIn: credentials => async dispatch => {
-    dispatch({ type: actions.SET_LOGGING_IN });
+    dispatch({ type: actions.SET_LOGGING_IN, payload: true });
     const response = await AuthService.logIn(credentials);
     if (response.ok) {
-      console.log(response.data);
-      // dispatch({
-      //   type: actions.LOG_IN,
-      //   payload: response.data
-      // });
+      const token = response.data[0] && response.data[0].token ? response.data[0].token : null;
+      if (!token) {
+        dispatch({
+          type: actions.SET_LOGGING_IN,
+          payload: false
+        });
+      } else {
+        dispatch({
+          type: actions.LOG_IN,
+          payload: token
+        });
+      }
     } else {
       dispatch({
-        type: actions.GET_WINNING_MOVES_FAILURE,
-        payload: response.problem
+        type: actions.SET_LOGGING_IN,
+        payload: false
       });
     }
   }

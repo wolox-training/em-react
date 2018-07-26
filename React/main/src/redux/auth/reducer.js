@@ -10,7 +10,7 @@ export function auth(state = initialState, action) {
     case '@@AUTH.SET_LOGGING_IN':
       return {
         ...state,
-        isLoggingIn: true
+        isLoggingIn: action.payload
       };
     case '@@AUTH.LOG_IN':
       return {
