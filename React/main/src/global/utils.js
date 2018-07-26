@@ -1,5 +1,4 @@
 export function calculateWinner(squares, winningMoves) {
-  console.log(winningMoves);
   let winner;
   winningMoves.forEach(line => {
     const [a, b, c] = line;
