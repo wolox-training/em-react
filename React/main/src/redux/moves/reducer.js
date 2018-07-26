@@ -1,3 +1,5 @@
+import { actions } from './actions';
+
 const initialState = {
   error: null,
   isLoading: true,
@@ -6,19 +8,19 @@ const initialState = {
 
 export function winningMoves(state = initialState, action) {
   switch (action.type) {
-    case '@@WINNING_MOVES.GET_WINNING_MOVES':
+    case actions.GET_WINNING_MOVES:
       return {
         ...state,
         isLoading: true
       };
-    case '@@WINNING_MOVES.GET_WINNING_MOVES_SUCCESS':
+    case actions.GET_WINNING_MOVES_SUCCESS:
       return {
         ...state,
         error: null,
         isLoading: false,
         moves: action.payload
       };
-    case '@@WINNING_MOVES.GET_WINNING_MOVES_FAILURE':
+    case actions.GET_WINNING_MOVES_FAILURE:
       return {
         ...state,
         isLoading: false,
