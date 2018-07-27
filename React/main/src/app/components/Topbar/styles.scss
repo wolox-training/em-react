@@ -1,0 +1,64 @@
+$user-menu-width: 150px;
+$topbar-height: 60px;
+
+*:local {
+  outline: none;
+  user-select: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.topbar {
+  position: absolute;
+  width: 100%;
+  height: $topbar-height;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.app-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 1rem;
+}
+
+.user-name {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem;
+  width: $user-menu-width;
+  cursor: pointer;
+}
+
+.user-menu {
+  cursor: pointer;
+  position: absolute;
+  background-color: white;
+  width: $user-menu-width;
+  top: $topbar-height + 10;
+  right: 10px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  transition-property: transform opacity;
+  transition-duration: 200ms;
+
+  & > * {
+    padding: 1rem;
+  }
+}
+
+.user-menu-collapsed {
+  opacity: 0;
+  transform: translate(1rem, $topbar-height * -1) scale(0);
+  transition-property: transform opacity;
+  transition-duration: 200ms
+}

@@ -1,13 +1,19 @@
 import { createTypes } from 'redux-create-types';
 
 import AuthService from '../../services/AuthService';
+import { actions as userActions } from '../users/actions';
 
 export const actions = createTypes(['SET_LOGGING_IN', 'SET_ERROR', 'LOG_IN', 'LOG_OUT'], '@@AUTH');
 
 const actionCreators = {
-  checkLoginStatus: () => async dispatch => {
+  checkLoginStatus: () => dispatch => {
     const lsToken = localStorage.getItem('token');
+    const userData = localStorage.getItem('userData');
     if (lsToken) {
+      dispatch({
+        type: userActions.SET_USER_DATA,
+        payload: JSON.parse(userData)
+      });
       dispatch({
         type: actions.LOG_IN,
         payload: lsToken
@@ -26,9 +32,14 @@ const actionCreators = {
         });
       } else {
         localStorage.setItem('token', token);
+        localStorage.setItem('userData', JSON.stringify(response.data[0]));
         dispatch({
           type: actions.LOG_IN,
           payload: token
+        });
+        dispatch({
+          type: userActions.SET_USER_DATA,
+          payload: response.data[0]
         });
       }
     } else {
@@ -37,6 +48,11 @@ const actionCreators = {
         payload: false
       });
     }
+  },
+  logOut: () => async dispatch => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userData');
+    dispatch({ type: actions.LOG_OUT });
   }
 };
 

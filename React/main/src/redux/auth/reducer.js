@@ -30,11 +30,7 @@ export function auth(state = initialState, action) {
       };
     case actions.LOG_OUT:
       return {
-        ...state,
-        error: null,
-        isLoggingIn: false,
-        loggedIn: false,
-        token: null
+        ...initialState
       };
     default:
       return state;

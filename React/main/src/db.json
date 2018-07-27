@@ -1,14 +1,21 @@
 {
   "login": [
     {
-      "username": "mr_x@wolox.co",
+      "id": 1,
+      "token": "token_1",
+      "name": "Mr. X",
+      "email": "mr_x@wolox.co",
       "password": "wolox1189",
-      "token": "token_1"
+      "username": "mr_x@wolox.co",
+      "icon": "😎"
     },
     {
-      "username": "mr_o@wolox.co",
+      "token": "token_1",
+      "name": "Mr. O",
+      "email": "mr_o@wolox.co",
       "password": "wolox1189",
-      "token": "token_2"
+      "username": "mr_o@wolox.co",
+      "icon": "🤓"
     }
   ],
   "users": [
@@ -28,8 +35,6 @@
       "password": "wolox1189",
       "icon": "🤓"
     }
-  ],
-  "history": [
   ],
   "winning-moves": [
     [0, 1, 2],
