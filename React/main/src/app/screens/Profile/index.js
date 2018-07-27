@@ -2,16 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import TextHolder from './components/TextHolder';
+import style from './styles.scss';
+import ProfileCard from './components/ProfileCard';
 
 const Profile = ({ userData }) => (
-  <div>
-    <h1>{userData.name}</h1>
-    <TextHolder label="Username" text={userData.username} />
-    <TextHolder label="Icon" text={userData.username} />
-    <div>
-      <button>Edit Profile</button>
-    </div>
+  <div className={style['profile-page']}>
+    <ProfileCard data={userData} />
   </div>
 );
 
