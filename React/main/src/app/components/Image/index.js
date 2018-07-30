@@ -20,7 +20,7 @@ class Image extends Component {
       inheritedClassses,
       this.state.isLoading ? style.loading : '',
       this.state.hasErrored ? style.hasError : ''
-    ]
+    ];
   })();
 
   render() {

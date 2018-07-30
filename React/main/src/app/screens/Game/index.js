@@ -71,7 +71,7 @@ class Game extends Component {
     const { history } = this.state;
     const { stepNumber, winningMoves, userData } = this.props;
 
-    const current = history[stepNumber];
+    const current = history[stepNumber] || history[0];
     const moves = this.getMovesHistory();
     const winner = calculateWinner(current.squares, winningMoves.moves);
     const icon = userData.icon || STRINGS.X;
