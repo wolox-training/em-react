@@ -79,7 +79,7 @@ class Game extends Component {
       : `Next player: ${this.props.xIsNext ? STRINGS.X : STRINGS.O}`;
 
     return (
-      <div className="game">
+      <div className={style.game}>
         <div className={style['game-board']}>
           <Board squares={current.squares} onClick={this.handleClick} />
         </div>
