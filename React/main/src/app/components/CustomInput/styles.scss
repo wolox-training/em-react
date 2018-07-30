@@ -1,44 +1,43 @@
+$font-size: 10px;
+
 .custom-input {
-  --font-size: 10px;
-  position: relative;
-  margin: calc(var(--font-size) * 1.7);
-  display: flex;
   align-items: center;
-  justify-content: center;
+  display: flex;
   flex-direction: column;
+  justify-content: center;
+  margin: $font-size * 1.7;
+  position: relative;
 }
 
 .label {
+  font-size: $font-size;
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
   transform: translateY(-100%);
-  font-size: var(--font-size);
 }
 
 .input {
-  font-size: calc(var(--font-size) * 1.5);
-  padding: calc(var(--font-size) / 2);
+  font-size: $font-size * 1.5;
+  padding: $font-size / 2;
   position: relative;
 }
 
 .error-message,
 .hidden {
-  display: block;
-  width: calc(100% - 2px);
-  position: absolute;
   color: red;
-  font-size: var(--font-size);
-  // padding: calc(var(--font-size) / 2);
+  display: block;
+  font-size: $font-size;
   justify-self: flex-end;
+  opacity: 1;
+  position: absolute;
   top: 100%;
   transition: 300ms;
-  opacity: 1;
+  width: calc(100% - 2px);
   z-index: -1;
 
   &.hidden {
-    transform: translateY(-10px);
     opacity: 0;
+    transform: translateY(-10px);
   }
-
 }
