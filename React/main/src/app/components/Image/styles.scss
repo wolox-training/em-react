@@ -1,25 +1,25 @@
 .loading {
+  animation-duration: 3s;
+  animation-name: loading;
+  animation-iteration-count: infinite;
+  background-color: white;
+  overflow: hidden;
   position: relative;
   text-indent: 100vw;
   white-space: nowrap;
-  overflow: hidden;
-  animation-name: loading;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-  background-color: white;
 }
 
 .loading::before {
+  align-items: center;
+  background-color: white;
   content: 'Cargando';
   display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  left: 0;
-  width: 100%;
   height: 100%;
-  background-color: white;
+  justify-content: center;
+  left: 0;
+  top: 0;
   position: absolute;
+  width: 100%;
 }
 
 .hasError {
