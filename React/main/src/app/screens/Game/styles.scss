@@ -1,14 +1,18 @@
 .game {
+  align-items: center;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-start;
+  padding-top: 100px;
   position: relative;
+  width: 100%;
 }
 
 .game-info {
   display: flex;
   flex-direction: column;
-  left: 0;
-  position: absolute;
+  position: relative;
   width: 100%;
 
   .info-next {
