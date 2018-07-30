@@ -21,7 +21,7 @@ const actionCreators = {
     } else {
       dispatch({
         type: actions.LOG_OUT
-      })
+      });
     }
   },
   logIn: credentials => async dispatch => {

@@ -46,6 +46,8 @@ class Game extends Component {
     const squares = current.squares.slice();
     const icon = userData.icon || STRINGS.X;
 
+    if (!winningMoves.length) return <div>Not yet</div>;
+
     if (calculateWinner(squares, winningMoves.moves)) return;
 
     squares[i] = this.props.xIsNext ? icon : STRINGS.O;
@@ -69,7 +71,11 @@ class Game extends Component {
 
   render() {
     const { history } = this.state;
-    const { stepNumber, winningMoves, userData } = this.props;
+    const { stepNumber, winningMoves, userData, state } = this.props;
+
+    console.log(state);
+
+    if (!winningMoves.length) return <div>Not yet</div>;
 
     const current = history[stepNumber] || history[0];
     const moves = this.getMovesHistory();
@@ -96,8 +102,9 @@ class Game extends Component {
 const mapStateToProps = state => ({
   xIsNext: state.turns.xIsNext,
   stepNumber: state.steps.stepNumber,
-  winningMoves: state.winningMoves,
-  userData: state.user
+  winningMoves: state.winningMoves.winningMoves,
+  userData: state.user,
+  state: state
 });
 
 const mapDispatchToProps = dispatch => ({

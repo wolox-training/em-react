@@ -1,15 +1,13 @@
+import { createReducer } from 'redux-recompose';
+
 const initialState = {
   stepNumber: 0
 };
 
-export function steps(state = initialState, action) {
-  switch (action.type) {
-    case 'ADD_STEP':
-      return {
-        ...state,
-        stepNumber: action.step
-      };
-    default:
-      return state;
-  }
-}
+const addStep = (state, action) => ({ ...state, [action.target]: action.payload });
+
+const reducerDescription = {
+  ADD_STEP: addStep
+};
+
+export const steps = createReducer(initialState, reducerDescription);
