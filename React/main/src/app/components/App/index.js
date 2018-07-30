@@ -14,17 +14,19 @@ import Login from '~screens/Login';
 import Profile from '~screens/Profile';
 
 class App extends Component {
-  async componentDidMount() {
-    await this.props.checkIfLoggedIn();
+  constructor(props) {
+    super(props);
+    this.props.checkIfLoggedIn();
   }
 
   render() {
-    const { loggedIn } = this.props;
+    const { loggedIn, isLoggingIn } = this.props;
+    if (isLoggingIn) return <div> Loading... </div>;
     return (
       <Router>
         <Fragment>
           <ProtectedRoute exact path="/" allowed={loggedIn} component={Game} />
-          <Route path="/login" render={() => (loggedIn ? <Redirect to="/game" /> : <Login />)} />
+          <Route exact path="/login" render={() => (loggedIn ? <Redirect to= "/game" /> : <Login />)} />
           <ProtectedRoute path="/game" allowed={loggedIn} component={Game} />
           <ProtectedRoute path="/profile" allowed={loggedIn} component={Profile} />
         </Fragment>
@@ -34,6 +36,7 @@ class App extends Component {
 }
 
 App.propTypes = {
+  isLoggingIn: PropTypes.bool.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   checkIfLoggedIn: PropTypes.func
 };
@@ -56,6 +59,7 @@ const ProtectedRoute = _props => {
 };
 
 const mapStateToProps = state => ({
+  isLoggingIn: state.auth.isLoggingIn,
   loggedIn: state.auth.loggedIn
 });
 

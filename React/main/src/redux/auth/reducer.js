@@ -2,7 +2,7 @@ import { actions } from './actions';
 
 const initialState = {
   error: null,
-  isLoggingIn: false,
+  isLoggingIn: true,
   loggedIn: false,
   token: null
 };

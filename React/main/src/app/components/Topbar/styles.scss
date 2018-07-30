@@ -11,52 +11,53 @@ $topbar-height: 60px;
 }
 
 .topbar {
-  position: absolute;
-  width: 100%;
-  height: $topbar-height;
-  top: 0;
-  left: 0;
-  display: flex;
   align-content: center;
-  justify-content: space-between;
-  flex-wrap: nowrap;
   box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  display: flex;
+  height: $topbar-height;
+  justify-content: space-between;
+  left: 0;
+  position: absolute;
+  top: 0;
+  flex-wrap: nowrap;
+  width: 100%;
+  z-index: 10;
 }
 
 .back-button {
-  margin-right: 10px;
-  display: flex;
   align-items: center;
+  display: flex;
+  margin-right: 10px;
   justify-content: center;
 }
 
 .app-title {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
   margin: 0;
   padding: 1rem;
 }
 
 .user-name {
-  display: flex;
   align-items: center;
+  cursor: pointer;
+  display: flex;
   justify-content: flex-end;
   padding: 1rem;
   width: $user-menu-width;
-  cursor: pointer;
 }
 
 .user-menu {
+  background-color: white;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
   cursor: pointer;
   position: absolute;
-  background-color: white;
-  width: $user-menu-width;
-  top: $topbar-height + 10;
   right: 10px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  top: $topbar-height + 10;
   transition-property: transform opacity;
   transition-duration: 200ms;
+  width: $user-menu-width;
 
   & > * {
     padding: 1rem;
@@ -69,7 +70,6 @@ $topbar-height: 60px;
   transition-property: transform opacity;
   transition-duration: 200ms
 }
-
 
 .down-arrow {
   border-left: 5px solid transparent;
