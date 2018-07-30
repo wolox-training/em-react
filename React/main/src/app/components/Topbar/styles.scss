@@ -23,6 +23,13 @@ $topbar-height: 60px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
 
+.back-button {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .app-title {
   display: flex;
   align-items: center;
@@ -61,4 +68,14 @@ $topbar-height: 60px;
   transform: translate(1rem, $topbar-height * -1) scale(0);
   transition-property: transform opacity;
   transition-duration: 200ms
+}
+
+
+.down-arrow {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid black;
+  height: 0;
+  margin: 10px;
+  width: 0; 
 }

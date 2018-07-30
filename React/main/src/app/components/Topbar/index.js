@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -30,10 +30,16 @@ class Topbar extends Component {
     return (
       <nav className={style.topbar}>
         <h1 className={style['app-title']}>
+          {this.props.location.pathname !== '/game' && (
+            <NavLink to="/game" className={style['back-button']}>
+              <i className={'material-icons'}>arrow_back</i>
+            </NavLink>
+          )}
           <NavLink to="/game">Tic Tac Toe!</NavLink>
         </h1>
         <div role="button" className={style['user-name']} onClick={this.toggleMenu} tabIndex={0}>
           {username}
+          <div className={style['down-arrow']} />
         </div>
         <div className={this.menuClasses()}>
           <div role="button" tabIndex={0}>
@@ -50,18 +56,21 @@ class Topbar extends Component {
 
 Topbar.propTypes = {
   username: PropTypes.string,
-  logout: PropTypes.func.isRequired
+  logout: PropTypes.func.isRequired,
+  location: PropTypes.objectOf(PropTypes.any)
 };
 
 const mapStateToProps = state => ({
-  username: `${state.user.name} - ${state.user.icon}`
+  username: state.user.name
 });
 
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(authActions.logOut())
 });
 
+const RouteredTopbar = withRouter(props => <Topbar {...props} />);
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Topbar);
+)(RouteredTopbar);
