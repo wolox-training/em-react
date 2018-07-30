@@ -18,6 +18,10 @@ const actionCreators = {
         type: actions.LOG_IN,
         payload: lsToken
       });
+    } else {
+      dispatch({
+        type: actions.LOG_OUT
+      })
     }
   },
   logIn: credentials => async dispatch => {

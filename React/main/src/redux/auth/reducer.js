@@ -30,7 +30,8 @@ export function auth(state = initialState, action) {
       };
     case actions.LOG_OUT:
       return {
-        ...initialState
+        ...initialState,
+        isLoggingIn: false
       };
     default:
       return state;
