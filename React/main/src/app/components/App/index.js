@@ -21,7 +21,7 @@ class App extends Component {
 
   render() {
     const { loggedIn, isLoggingIn } = this.props;
-    // if (isLoggingIn) return <div> Loading... </div>;
+    if (isLoggingIn) return <div> Loading... </div>;
     return (
       <Router>
         <Fragment>
