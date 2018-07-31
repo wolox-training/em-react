@@ -21,7 +21,7 @@ class App extends Component {
 
   render() {
     const { loggedIn, isLoggingIn } = this.props;
-    if (isLoggingIn) return <div> Loading... </div>;
+    // if (isLoggingIn) return <div> Loading... </div>;
     return (
       <Router>
         <Fragment>
@@ -59,7 +59,7 @@ const ProtectedRoute = _props => {
 };
 
 const mapStateToProps = state => ({
-  isLoggingIn: state.auth.isLoggingIn,
+  isLoggingIn: state.auth.authLoading,
   loggedIn: state.auth.loggedIn
 });
 

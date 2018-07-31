@@ -18,5 +18,9 @@ const rootReducer = combineReducers({
 });
 
 export default function setupStore() {
-  return createStore(rootReducer, applyMiddleware(thunk));
+  return createStore(
+    rootReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    applyMiddleware(thunk)
+  );
 }
