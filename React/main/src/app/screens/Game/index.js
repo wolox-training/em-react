@@ -6,7 +6,7 @@ import Board from '~components/Board';
 
 import { STRINGS } from '~/../global/constants';
 
-import { calculateWinner } from '~/../global/utils';
+import { calculateWinner, timeout } from '~/../global/utils';
 
 import { toggleXIsNext } from '~/../redux/turns/actions';
 
@@ -14,7 +14,10 @@ import { addStep } from '~/../redux/steps/actions';
 
 import movesActions from '~/../redux/moves/actions';
 
+import LoadingPage from '~components/LoadingPage';
+
 import style from './styles.scss';
+
 
 class Game extends Component {
   state = {
@@ -26,6 +29,7 @@ class Game extends Component {
   };
 
   async componentDidMount() {
+    await timeout(2000); // Simulates delay
     await this.props.getWinningMoves();
   }
 
@@ -71,8 +75,6 @@ class Game extends Component {
     const { history } = this.state;
     const { stepNumber, winningMoves, userData } = this.props;
 
-    if (!winningMoves.length) return <div>Not yet</div>;
-
     const current = history[stepNumber] || history[0];
     const moves = this.getMovesHistory();
     const winner = calculateWinner(current.squares, winningMoves);
@@ -81,7 +83,7 @@ class Game extends Component {
       ? `Da winner is: ${winner}`
       : `Next player: ${this.props.xIsNext ? icon : STRINGS.O}`;
 
-    return (
+    const BoardHandler = LoadingPage(
       <div className={style.game}>
         <div className={style['game-board']}>
           <Board squares={current.squares} onClick={this.handleClick} />
@@ -92,6 +94,8 @@ class Game extends Component {
         </div>
       </div>
     );
+
+    return <BoardHandler loaded={!!winningMoves.length} />;
   }
 }
 

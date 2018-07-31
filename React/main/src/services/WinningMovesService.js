@@ -1,5 +1,5 @@
 import api from '../config/api';
 
 export default {
-  getWinningMoves: () => api.get('/winning-moves')
+  getWinningMoves: async () => api.get('/winning-moves')
 };
