@@ -46,9 +46,7 @@ class Game extends Component {
     const squares = current.squares.slice();
     const icon = userData.icon || STRINGS.X;
 
-    if (!winningMoves.length) return <div>Not yet</div>;
-
-    if (calculateWinner(squares, winningMoves.moves)) return;
+    if (calculateWinner(squares, winningMoves)) return;
 
     squares[i] = this.props.xIsNext ? icon : STRINGS.O;
 
@@ -71,15 +69,13 @@ class Game extends Component {
 
   render() {
     const { history } = this.state;
-    const { stepNumber, winningMoves, userData, state } = this.props;
-
-    console.log(state);
+    const { stepNumber, winningMoves, userData } = this.props;
 
     if (!winningMoves.length) return <div>Not yet</div>;
 
     const current = history[stepNumber] || history[0];
     const moves = this.getMovesHistory();
-    const winner = calculateWinner(current.squares, winningMoves.moves);
+    const winner = calculateWinner(current.squares, winningMoves);
     const icon = userData.icon || STRINGS.X;
     const status = winner
       ? `Da winner is: ${winner}`
@@ -103,8 +99,7 @@ const mapStateToProps = state => ({
   xIsNext: state.turns.xIsNext,
   stepNumber: state.steps.stepNumber,
   winningMoves: state.winningMoves.winningMoves,
-  userData: state.user,
-  state: state
+  userData: state.user
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -119,7 +114,7 @@ Game.propTypes = {
   stepNumber: PropTypes.number.isRequired,
   addStep: PropTypes.func.isRequired,
   getWinningMoves: PropTypes.func.isRequired,
-  winningMoves: PropTypes.objectOf(PropTypes.any),
+  winningMoves: PropTypes.arrayOf(PropTypes.any),
   userData: PropTypes.objectOf(PropTypes.any)
 };
 

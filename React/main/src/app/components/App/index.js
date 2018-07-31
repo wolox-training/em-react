@@ -25,7 +25,7 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
-          <ProtectedRoute exact path="/" allowed={loggedIn} component={Game} />
+          <Route exact path="/" render={() => (loggedIn ? <Redirect to="/game" /> : <Login />)} />
           <Route exact path="/login" render={() => (loggedIn ? <Redirect to="/game" /> : <Login />)} />
           <ProtectedRoute path="/game" allowed={loggedIn} component={Game} />
           <ProtectedRoute path="/profile" allowed={loggedIn} component={Profile} />

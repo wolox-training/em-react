@@ -9,7 +9,7 @@ export const actions = createTypes(
 
 const actionCreators = {
   getWinningMoves: () => async dispatch => {
-    dispatch({ type: actions.GET_WINNING_MOVES, target: 'winnningMoves' });
+    dispatch({ type: actions.GET_WINNING_MOVES, target: 'winningMoves' });
     const response = await WinningMovesService.getWinningMoves();
     if (response.ok) {
       dispatch({

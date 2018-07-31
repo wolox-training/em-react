@@ -1,12 +1,13 @@
+import Immutable from 'seamless-immutable';
 import { createReducer, onLoading, onFailure, onSuccess } from 'redux-recompose';
 
 import { actions } from './actions';
 
-const initialState = {
+const initialState = Immutable({
   winningMoves: [],
   winningMovesError: null,
   winningMovesLoading: true
-};
+});
 
 const reducerDescription = {
   [actions.GET_WINNING_MOVES]: onLoading(),
