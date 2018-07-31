@@ -1,5 +1,5 @@
 import Immutable from 'seamless-immutable';
-import { createReducer, onLoading, onFailure, onSuccess } from 'redux-recompose';
+import { createReducer, onLoading, onFailure } from 'redux-recompose';
 
 import { actions } from './actions';
 
@@ -10,23 +10,24 @@ const initialState = Immutable({
   token: null
 });
 
-const logIn = (state, action) => ({
-  ...state,
-  authError: null,
-  authLoading: false,
-  loggedIn: true,
-  token: action.payload
-});
+const logIn = (state, action) =>
+  state.merge({
+    authError: null,
+    authLoading: false,
+    loggedIn: true,
+    token: action.payload
+  });
 
-const logOut = () => ({
-  ...initialState,
-  authLoading: false
-});
+const logOut = state =>
+  state.merge({
+    ...initialState,
+    authLoading: false
+  });
 
 const reducerDescription = {
   [actions.SET_LOGGING_IN]: onLoading(),
   [actions.SET_ERROR]: onFailure(),
-  [actions.LOG_IN]: onSuccess(logIn),
+  [actions.LOG_IN]: logIn,
   [actions.LOG_OUT]: logOut
 };
 
