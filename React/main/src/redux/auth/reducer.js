@@ -1,5 +1,5 @@
 import Immutable from 'seamless-immutable';
-import { createReducer, onLoading, onFailure } from 'redux-recompose';
+import { createReducer, onLoading, onFailure, onSuccess } from 'redux-recompose';
 
 import { actions } from './actions';
 
@@ -26,7 +26,7 @@ const logOut = () => ({
 const reducerDescription = {
   [actions.SET_LOGGING_IN]: onLoading(),
   [actions.SET_ERROR]: onFailure(),
-  [actions.LOG_IN]: logIn,
+  [actions.LOG_IN]: onSuccess(logIn),
   [actions.LOG_OUT]: logOut
 };
 

@@ -28,7 +28,7 @@ const actionCreators = {
     }
   },
   logIn: credentials => async dispatch => {
-    dispatch({ type: actions.SET_LOGGING_IN, target: 'test' });
+    dispatch({ type: actions.SET_LOGGING_IN, target: 'auth' });
     const response = await AuthService.logIn(credentials);
     if (response.ok) {
       const token = response.data[0] && response.data[0].token ? response.data[0].token : null;
