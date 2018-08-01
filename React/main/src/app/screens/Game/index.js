@@ -99,7 +99,7 @@ const mapStateToProps = state => ({
   xIsNext: state.turns.xIsNext,
   stepNumber: state.steps.stepNumber,
   winningMoves: state.winningMoves.winningMoves,
-  userData: state.user
+  userData: state.user.userData
 });
 
 const mapDispatchToProps = dispatch => ({

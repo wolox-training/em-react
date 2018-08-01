@@ -1,20 +1,24 @@
+import Immutable from 'seamless-immutable';
+import { createReducer, onSuccess, onLoading, onFailure } from 'redux-recompose';
+
 import { actions } from './actions';
 
-const initialState = {
-  name: null,
-  user: null,
-  password: null,
-  icon: null
+const initialState = Immutable({
+  userData: {
+    id: null,
+    name: null,
+    user: null,
+    password: null,
+    icon: null
+  },
+  userDataLoading: false,
+  userDataError: false
+});
+
+const reducerDescription = {
+  [actions.GET_USER_DATA]: onLoading(),
+  [actions.GET_USER_DATA_SUCCESS]: onSuccess(),
+  [actions.GET_USER_DATA_FAILURE]: onFailure()
 };
 
-export function user(state = initialState, action) {
-  switch (action.type) {
-    case actions.SET_USER_DATA:
-      return {
-        ...state,
-        ...action.payload
-      };
-    default:
-      return state;
-  }
-}
+export const user = createReducer(initialState, reducerDescription);

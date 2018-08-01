@@ -59,7 +59,7 @@ Topbar.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  username: state.user.name
+  username: state.user.userData.name
 });
 
 const mapDispatchToProps = dispatch => ({
