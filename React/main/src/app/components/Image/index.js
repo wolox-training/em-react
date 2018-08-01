@@ -9,8 +9,12 @@ class Image extends Component {
     hasErrored: false
   };
 
-  componentDidMount = () => {
-    this.setState({ isLoading: true });
+  onLoad = () => {
+    this.setState({ isLoading: false, hasErrored: false });
+  };
+
+  onError = () => {
+    this.setState({ isLoading: false, hasErrored: true });
   };
 
   classes = (() => {
@@ -31,18 +35,8 @@ class Image extends Component {
         src={src}
         alt={alt}
         className={this.classes.join(' ')}
-        onLoad={() =>
-          this.setState({
-            isLoading: false,
-            hasErrored: false
-          })
-        }
-        onError={() =>
-          this.setState({
-            isLoading: false,
-            hasErrored: true
-          })
-        }
+        onLoad={this.onLoad}
+        onError={this.onError}
       />
     );
   }
