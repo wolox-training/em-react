@@ -14,8 +14,7 @@ import Login from '~screens/Login';
 import Profile from '~screens/Profile';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  componentDidMount() {
     this.props.checkIfLoggedIn();
   }
 
