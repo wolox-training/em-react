@@ -110,7 +110,7 @@ const mapStateToProps = state => ({
   stepNumber: state.steps.stepNumber,
   winningMovesError: state.winningMoves.winningMovesError,
   winningMoves: state.winningMoves.winningMoves,
-  userData: state.user
+  userData: state.user.userData
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -17,10 +17,8 @@ class Topbar extends Component {
   }
 
   toggleMenu = () => {
-    this.setState({ menuIsCollapsed: !this.state.menuIsCollapsed });
+    this.setState(prevState => ({ menuIsCollapsed: !prevState.menuIsCollapsed }));
   };
-
-  handleClickEvent = () => {};
 
   menuClasses = () =>
     [style['user-menu'], this.state.menuIsCollapsed ? style['user-menu-collapsed'] : null].join(' ');
@@ -61,7 +59,7 @@ Topbar.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  username: state.user.name
+  username: state.user.userData.name
 });
 
 const mapDispatchToProps = dispatch => ({

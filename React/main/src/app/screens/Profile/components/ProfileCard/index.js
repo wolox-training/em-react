@@ -8,10 +8,9 @@ import TextHolder from '~components/TextHolder';
 import style from './styles.scss';
 
 const ProfileCard = ({ data }) => (
-  // return (
   <div className={style['profile-card']}>
     <div className={style['profile-pic-container']}>
-      <Image src="http://google.com" className={style['profile-pic']} alt="Profile Pic" />
+      <Image src={data.picture} className={style['profile-pic']} alt="Profile Pic" />
     </div>
     <h1 className={style['profile-name']}>{data.name}</h1>
     <div className={style['profile-data']}>
@@ -28,7 +27,6 @@ const ProfileCard = ({ data }) => (
       </button>
     </div>
   </div>
-  // );
 );
 
 ProfileCard.propTypes = {

@@ -9,8 +9,12 @@ class Image extends Component {
     hasErrored: false
   };
 
-  componentDidMount = () => {
-    this.setState({ isLoading: true });
+  onLoad = () => {
+    this.setState({ isLoading: false, hasErrored: false }, () => console.log('here'));
+  };
+
+  onError = () => {
+    this.setState({ isLoading: false, hasErrored: true });
   };
 
   classes = (() => {
@@ -30,19 +34,14 @@ class Image extends Component {
         {...props}
         src={src}
         alt={alt}
-        className={this.classes.join(' ')}
-        onLoad={() =>
-          this.setState({
-            isLoading: false,
-            hasErrored: false
-          })
-        }
-        onError={() =>
-          this.setState({
-            isLoading: false,
-            hasErrored: true
-          })
-        }
+        className={[
+          style.image,
+          className,
+          this.state.isLoading ? style.loading : '',
+          this.state.hasErrored ? style.hasError : ''
+        ].join(' ')}
+        onLoad={this.onLoad}
+        onError={this.onError}
       />
     );
   }
@@ -51,7 +50,7 @@ class Image extends Component {
 Image.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
-  className: PropTypes.string || PropTypes.arrayOf(PropTypes.string)
+  className: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
 };
 
 export default Image;
