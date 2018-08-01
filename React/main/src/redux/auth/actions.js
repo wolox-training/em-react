@@ -1,27 +1,23 @@
 import { createTypes } from 'redux-create-types';
 
 import AuthService from '../../services/AuthService';
-import { actions as userActions } from '../users/actions';
+import userActions from '../users/actions';
 
 export const actions = createTypes(['SET_LOGGING_IN', 'SET_ERROR', 'LOG_IN', 'LOG_OUT'], '@@AUTH');
 
 const actionCreators = {
   checkLoginStatus: () => dispatch => {
-    const lsToken = localStorage.getItem('token');
-    const userData = localStorage.getItem('userData');
+    const lsToken = localStorage.getItem('userData');
     if (lsToken) {
-      dispatch({
-        type: userActions.SET_USER_DATA,
-        payload: JSON.parse(userData)
-      });
       dispatch({
         type: actions.LOG_IN,
         payload: lsToken
       });
+      dispatch(userActions.getUserData());
     } else {
       dispatch({
         type: actions.LOG_OUT
-      })
+      });
     }
   },
   logIn: credentials => async dispatch => {
@@ -35,16 +31,13 @@ const actionCreators = {
           payload: 'Wrong username or password!'
         });
       } else {
-        localStorage.setItem('token', token);
-        localStorage.setItem('userData', JSON.stringify(response.data[0]));
+        const userID = response.data[0].userID;
+        localStorage.setItem('auth', JSON.stringify({ token, userID }));
         dispatch({
           type: actions.LOG_IN,
           payload: token
         });
-        dispatch({
-          type: userActions.SET_USER_DATA,
-          payload: response.data[0]
-        });
+        dispatch(userActions.getUserData());
       }
     } else {
       dispatch({

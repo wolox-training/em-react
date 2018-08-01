@@ -1,22 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
+import userActions from '~/../redux/users/actions';
 
 import style from './styles.scss';
 import ProfileCard from './components/ProfileCard';
 
-const Profile = ({ userData }) => (
-  <div className={style['profile-page']}>
-    <ProfileCard data={userData} />
-  </div>
-);
+class Profile extends Component {
+  async componentDidMount() {
+    await this.props.getUserData();
+  }
+
+  render() {
+    const { userData } = this.props;
+    return (
+      <div className={style['profile-page']}>
+        <ProfileCard data={userData} />
+      </div>
+    );
+  }
+}
 
 Profile.propTypes = {
-  userData: PropTypes.objectOf(PropTypes.any)
+  userData: PropTypes.objectOf(PropTypes.any),
+  getUserData: PropTypes.func
 };
 
 const mapStateToProps = state => ({
-  userData: state.user
+  userData: state.user.userData
 });
 
-export default connect(mapStateToProps)(Profile);
+const mapDispatchToProps = dispatch => ({
+  getUserData: () => dispatch(userActions.getUserData())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Profile);
