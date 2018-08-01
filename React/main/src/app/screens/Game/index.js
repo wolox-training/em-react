@@ -29,7 +29,7 @@ class Game extends Component {
   };
 
   async componentDidMount() {
-    await timeout(2000); // Simulates delay
+    await timeout(1000); // Simulates delay
     await this.props.getWinningMoves();
   }
 
@@ -42,6 +42,10 @@ class Game extends Component {
         </li>
       );
     });
+
+  retryConnection = async () => {
+    await this.props.getWinningMoves();
+  }
 
   handleClick = i => {
     const { winningMoves, userData } = this.props;
@@ -73,7 +77,7 @@ class Game extends Component {
 
   render() {
     const { history } = this.state;
-    const { stepNumber, winningMoves, userData } = this.props;
+    const { stepNumber, winningMoves, winningMovesError, userData } = this.props;
 
     const current = history[stepNumber] || history[0];
     const moves = this.getMovesHistory();
@@ -95,13 +99,16 @@ class Game extends Component {
       </div>
     );
 
-    return <BoardHandler loaded={!!winningMoves.length} />;
+    return (
+      <BoardHandler loaded={!!winningMoves.length} error={winningMovesError} onError={this.retryConnection} />
+    );
   }
 }
 
 const mapStateToProps = state => ({
   xIsNext: state.turns.xIsNext,
   stepNumber: state.steps.stepNumber,
+  winningMovesError: state.winningMoves.winningMovesError,
   winningMoves: state.winningMoves.winningMoves,
   userData: state.user
 });
@@ -118,6 +125,7 @@ Game.propTypes = {
   stepNumber: PropTypes.number.isRequired,
   addStep: PropTypes.func.isRequired,
   getWinningMoves: PropTypes.func.isRequired,
+  winningMovesError: PropTypes.bool,
   winningMoves: PropTypes.arrayOf(PropTypes.any),
   userData: PropTypes.objectOf(PropTypes.any)
 };
