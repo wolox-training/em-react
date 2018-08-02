@@ -10,7 +10,7 @@ class Image extends Component {
   };
 
   onLoad = () => {
-    this.setState({ isLoading: false, hasErrored: false }, () => console.log('here'));
+    this.setState({ isLoading: false, hasErrored: false });
   };
 
   onError = () => {
@@ -48,7 +48,7 @@ class Image extends Component {
 }
 
 Image.propTypes = {
-  src: PropTypes.string.isRequired,
+  src: PropTypes.string,
   alt: PropTypes.string.isRequired,
   className: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
 };

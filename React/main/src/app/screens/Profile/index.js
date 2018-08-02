@@ -4,25 +4,26 @@ import { connect } from 'react-redux';
 
 import userActions from '~/../redux/users/actions';
 
-import { timeout } from '~/../global/utils';
-
 import LoadingPage from '~components/LoadingPage';
 
 import style from './styles.scss';
 import ProfileCard from './components/ProfileCard';
 
 class Profile extends Component {
-  async componentDidMount() {
-    await timeout(3000);
-    await this.props.getUserData();
+  componentDidMount() {
+    this.props.getUserData();
   }
+
+  handleSubmit = val => {
+    console.log('here');
+  };
 
   render() {
     const { userData, userDataError, userDataLoading } = this.props.userData;
 
     const ProfileHandler = LoadingPage(
       <div className={style['profile-page']}>
-        <ProfileCard data={userData} />
+        <ProfileCard onSubmit={this.handleSubmit} data={userData} />
       </div>
     );
 

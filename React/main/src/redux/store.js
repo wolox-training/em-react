@@ -8,6 +8,8 @@ import { turns } from './turns/reducer';
 import { steps } from './steps/reducer';
 import { winningMoves } from './moves/reducer';
 
+/* eslint no-underscore-dangle: 0 */
+
 const rootReducer = combineReducers({
   auth,
   user,

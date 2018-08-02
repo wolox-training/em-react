@@ -18,7 +18,6 @@ import LoadingPage from '~components/LoadingPage';
 
 import style from './styles.scss';
 
-
 class Game extends Component {
   state = {
     history: [
@@ -45,7 +44,7 @@ class Game extends Component {
 
   retryConnection = async () => {
     await this.props.getWinningMoves();
-  }
+  };
 
   handleClick = i => {
     const { winningMoves, userData } = this.props;

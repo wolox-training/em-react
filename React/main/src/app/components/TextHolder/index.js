@@ -12,7 +12,7 @@ const TextHolder = ({ label, text }) => (
 
 TextHolder.propTypes = {
   label: PropTypes.string,
-  text: PropTypes.string.isRequired
+  text: PropTypes.string
 };
 
 export default TextHolder;
