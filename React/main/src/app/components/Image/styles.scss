@@ -1,0 +1,42 @@
+.loading {
+  animation-duration: 3s;
+  animation-name: loading;
+  animation-iteration-count: infinite;
+  background-color: white;
+  overflow: hidden;
+  position: relative;
+  text-indent: 100vw;
+  white-space: nowrap;
+}
+
+.loading::before {
+  align-items: center;
+  background-color: white;
+  content: 'Cargando';
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.hasError {
+  background-color: red;
+}
+
+@keyframes loading {
+  0% {
+    opacity: .6;
+    transform: scale(1) rotate(360deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(.8) rotate(0deg);
+  }
+  100% {
+    opacity: .6;
+    transform: scale(1);
+  }
+}

@@ -2,7 +2,7 @@ import { actions } from './actions';
 
 const initialState = {
   error: null,
-  isLoggingIn: false,
+  isLoggingIn: true,
   loggedIn: false,
   token: null
 };
@@ -30,11 +30,8 @@ export function auth(state = initialState, action) {
       };
     case actions.LOG_OUT:
       return {
-        ...state,
-        error: null,
-        isLoggingIn: false,
-        loggedIn: false,
-        token: null
+        ...initialState,
+        isLoggingIn: false
       };
     default:
       return state;

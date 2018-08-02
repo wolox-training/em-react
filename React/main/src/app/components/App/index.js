@@ -5,25 +5,29 @@ import PropTypes from 'prop-types';
 
 import authActions from '~/../redux/auth/actions';
 
+import Layout from '~components/Layout';
+
 import Game from '~screens/Game';
 
 import Login from '~screens/Login';
 
+import Profile from '~screens/Profile';
+
 class App extends Component {
-  async componentDidMount() {
-    await this.props.checkIfLoggedIn();
+  componentDidMount() {
+    this.props.checkIfLoggedIn();
   }
 
   render() {
-    const { loggedIn } = this.props;
+    const { loggedIn, isLoggingIn } = this.props;
+    if (isLoggingIn) return <div> Loading... </div>;
     return (
       <Router>
         <Fragment>
-          <Route exact path="/">
-            <Redirect to={loggedIn ? '/game' : '/login'} />
-          </Route>
-          <Route path="/login" component={Login} />
-          <Route path="/game" component={Game} />
+          <ProtectedRoute exact path="/" allowed={loggedIn} component={Game} />
+          <Route exact path="/login" render={() => (loggedIn ? <Redirect to="/game" /> : <Login />)} />
+          <ProtectedRoute path="/game" allowed={loggedIn} component={Game} />
+          <ProtectedRoute path="/profile" allowed={loggedIn} component={Profile} />
         </Fragment>
       </Router>
     );
@@ -31,11 +35,30 @@ class App extends Component {
 }
 
 App.propTypes = {
+  isLoggingIn: PropTypes.bool.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   checkIfLoggedIn: PropTypes.func
 };
 
+const Page = ({ content: Content }) => (
+  <Layout>
+    <Content />
+  </Layout>
+);
+
+Page.propTypes = {
+  content: PropTypes.func
+};
+
+const ProtectedRoute = _props => {
+  const { component, allowed, ...props } = _props;
+  return (
+    <Route {...props} render={() => (allowed ? <Page content={component} /> : <Redirect to="/login" />)} />
+  );
+};
+
 const mapStateToProps = state => ({
+  isLoggingIn: state.auth.isLoggingIn,
   loggedIn: state.auth.loggedIn
 });
 
