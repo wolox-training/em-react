@@ -1,15 +1,12 @@
-const initialState = {
+import Immutable from 'seamless-immutable';
+import { createReducer, onReadValue } from 'redux-recompose';
+
+const initialState = Immutable({
   xIsNext: true
+});
+
+const reducerDescription = {
+  CHANGE_TURN: onReadValue()
 };
 
-export function turns(state = initialState, action) {
-  switch (action.type) {
-    case 'TOGGLE_X_IS_NEXT':
-      return {
-        ...state,
-        xIsNext: action.xIsNext
-      };
-    default:
-      return state;
-  }
-}
+export const turns = createReducer(initialState, reducerDescription);

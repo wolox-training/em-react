@@ -1,15 +1,12 @@
-const initialState = {
+import Immutable from 'seamless-immutable';
+import { createReducer, onReadValue } from 'redux-recompose';
+
+const initialState = Immutable({
   stepNumber: 0
+});
+
+const reducerDescription = {
+  ADD_STEP: onReadValue()
 };
 
-export function steps(state = initialState, action) {
-  switch (action.type) {
-    case 'ADD_STEP':
-      return {
-        ...state,
-        stepNumber: action.step
-      };
-    default:
-      return state;
-  }
-}
+export const steps = createReducer(initialState, reducerDescription);

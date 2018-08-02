@@ -11,23 +11,26 @@ const actionCreators = {
     if (lsToken) {
       dispatch({
         type: actions.LOG_IN,
+        target: 'auth',
         payload: lsToken
       });
       dispatch(userActions.getUserData());
     } else {
       dispatch({
-        type: actions.LOG_OUT
+        type: actions.LOG_OUT,
+        target: 'auth'
       });
     }
   },
   logIn: credentials => async dispatch => {
-    dispatch({ type: actions.SET_LOGGING_IN, payload: true });
+    dispatch({ type: actions.SET_LOGGING_IN, target: 'auth' });
     const response = await AuthService.logIn(credentials);
     if (response.ok) {
       const token = response.data[0] && response.data[0].token ? response.data[0].token : null;
       if (!token) {
         dispatch({
           type: actions.SET_ERROR,
+          target: 'auth',
           payload: 'Wrong username or password!'
         });
       } else {
@@ -35,6 +38,7 @@ const actionCreators = {
         localStorage.setItem('auth', JSON.stringify({ token, userID }));
         dispatch({
           type: actions.LOG_IN,
+          target: 'auth',
           payload: token
         });
         dispatch(userActions.getUserData());
@@ -42,6 +46,7 @@ const actionCreators = {
     } else {
       dispatch({
         type: actions.SET_LOGGING_IN,
+        target: 'auth',
         payload: false
       });
     }

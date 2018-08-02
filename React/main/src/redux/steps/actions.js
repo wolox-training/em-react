@@ -1,4 +1,5 @@
 export const addStep = step => ({
   type: 'ADD_STEP',
-  step
+  target: 'stepNumber',
+  payload: step
 });

@@ -1,39 +1,34 @@
+import Immutable from 'seamless-immutable';
+import { createReducer, onLoading, onFailure } from 'redux-recompose';
+
 import { actions } from './actions';
 
-const initialState = {
-  error: null,
-  isLoggingIn: true,
+const initialState = Immutable({
+  authLoading: true,
+  authError: null,
   loggedIn: false,
   token: null
+});
+
+const logIn = (state, action) =>
+  state.merge({
+    authError: null,
+    authLoading: false,
+    loggedIn: true,
+    token: action.payload
+  });
+
+const logOut = state =>
+  state.merge({
+    ...initialState,
+    authLoading: false
+  });
+
+const reducerDescription = {
+  [actions.SET_LOGGING_IN]: onLoading(),
+  [actions.SET_ERROR]: onFailure(),
+  [actions.LOG_IN]: logIn,
+  [actions.LOG_OUT]: logOut
 };
 
-export function auth(state = initialState, action) {
-  switch (action.type) {
-    case actions.SET_LOGGING_IN:
-      return {
-        ...state,
-        isLoggingIn: action.payload
-      };
-    case actions.SET_ERROR:
-      return {
-        ...state,
-        isLoggingIn: false,
-        error: action.payload
-      };
-    case actions.LOG_IN:
-      return {
-        ...state,
-        error: null,
-        isLoggingIn: false,
-        loggedIn: true,
-        token: action.payload
-      };
-    case actions.LOG_OUT:
-      return {
-        ...initialState,
-        isLoggingIn: false
-      };
-    default:
-      return state;
-  }
-}
+export const auth = createReducer(initialState, reducerDescription);
