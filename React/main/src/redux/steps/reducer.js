@@ -1,13 +1,12 @@
-import { createReducer } from 'redux-recompose';
+import Immutable from 'seamless-immutable';
+import { createReducer, onReadValue } from 'redux-recompose';
 
-const initialState = {
+const initialState = Immutable({
   stepNumber: 0
-};
-
-const addStep = (state, action) => ({ ...state, [action.target]: action.payload });
+});
 
 const reducerDescription = {
-  ADD_STEP: addStep
+  ADD_STEP: onReadValue()
 };
 
 export const steps = createReducer(initialState, reducerDescription);

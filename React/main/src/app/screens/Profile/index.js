@@ -14,7 +14,7 @@ import ProfileCard from './components/ProfileCard';
 class Profile extends Component {
   async componentDidMount() {
     await timeout(3000);
-    await this.props.getUserData();
+    this.props.getUserData();
   }
 
   render() {

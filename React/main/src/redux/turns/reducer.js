@@ -1,13 +1,12 @@
-import { createReducer } from 'redux-recompose';
+import Immutable from 'seamless-immutable';
+import { createReducer, onReadValue } from 'redux-recompose';
 
-const initialState = {
+const initialState = Immutable({
   xIsNext: true
-};
-
-const changeTurn = (state, action) => ({ ...state, [action.target]: action.payload });
+});
 
 const reducerDescription = {
-  CHANGE_TURN: changeTurn
+  CHANGE_TURN: onReadValue()
 };
 
 export const turns = createReducer(initialState, reducerDescription);
