@@ -8,8 +8,8 @@ import style from './styles.scss';
 import ProfileCard from './components/ProfileCard';
 
 class Profile extends Component {
-  async componentDidMount() {
-    await this.props.getUserData();
+  componentDidMount() {
+    this.props.getUserData();
   }
 
   render() {

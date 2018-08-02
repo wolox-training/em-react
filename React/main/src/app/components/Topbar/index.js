@@ -12,10 +12,6 @@ class Topbar extends Component {
     menuIsCollapsed: true
   };
 
-  componentDidMount() {
-    window.addEventListener('click', this.handleClickEvent);
-  }
-
   toggleMenu = () => {
     this.setState(prevState => ({ menuIsCollapsed: !prevState.menuIsCollapsed }));
   };

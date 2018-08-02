@@ -17,16 +17,6 @@ class Image extends Component {
     this.setState({ isLoading: false, hasErrored: true });
   };
 
-  classes = (() => {
-    const inheritedClassses = this.props.className || null;
-    return [
-      style.image,
-      inheritedClassses,
-      this.state.isLoading ? style.loading : '',
-      this.state.hasErrored ? style.hasError : ''
-    ];
-  })();
-
   render() {
     const { alt, src, className, ...props } = this.props;
     return (
