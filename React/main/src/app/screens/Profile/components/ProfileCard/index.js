@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
 import PropTypes from 'prop-types';
-
-import { maxLength, isIcon } from '~/../global/validations';
 
 import Image from '~components/Image';
 
 import TextHolder from '~components/TextHolder';
 
-import CustomInput from '~components/CustomInput';
-
 import style from './styles.scss';
+import EditProfileForm from './components/EditProfileForm';
 
 class ProfileCard extends Component {
   state = {
     isEditing: false
+  };
+
+  onSubmit = () => {
+    console.log('here');
   };
 
   toggleEditing = e => {
@@ -23,46 +23,12 @@ class ProfileCard extends Component {
     this.setState(prevState => ({ isEditing: !prevState.isEditing }));
   };
 
-  submit = () => {
-    console.log('here');
-  };
-
   render() {
     const { isEditing } = this.state;
-    const { data, ...props } = this.props;
+    const { data } = this.props;
 
     if (isEditing) {
-      return (
-        <form className={style['profile-card']} onSubmit={props.handleSubmit}>
-          <div className={style['profile-form']}>
-            <Field
-              name="name"
-              label="Name"
-              component={CustomInput}
-              type="text"
-              validate={[maxLength]}
-              defaultValue={data.name}
-            />
-            <Field
-              name="icon"
-              label="Icon"
-              component={CustomInput}
-              validate={[isIcon]}
-              defaultValue={data.icon}
-              maxLength={2}
-              className={style.iconInput}
-            />
-          </div>
-          <div className={style['profile-actions']}>
-            <button className={style['action-button']} onClick={this.toggleEditing}>
-              Cancel
-            </button>
-            <button className={style['action-button']} onClick={this.handleSubmit} type="submit">
-              Save Info
-            </button>
-          </div>
-        </form>
-      );
+      return <EditProfileForm data={data} onCancel={this.toggleEditing} onSubmit={this.onSubmit} />;
     }
 
     return (
@@ -90,10 +56,7 @@ class ProfileCard extends Component {
 }
 
 ProfileCard.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
   data: PropTypes.objectOf(PropTypes.any)
 };
 
-export default reduxForm({
-  form: 'profile'
-})(ProfileCard);
+export default ProfileCard;

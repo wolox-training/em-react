@@ -14,16 +14,12 @@ class Profile extends Component {
     this.props.getUserData();
   }
 
-  handleSubmit = val => {
-    console.log('here');
-  };
-
   render() {
     const { userData, userDataError, userDataLoading } = this.props.userData;
 
     const ProfileHandler = LoadingPage(
       <div className={style['profile-page']}>
-        <ProfileCard onSubmit={this.handleSubmit} data={userData} />
+        <ProfileCard data={userData} />
       </div>
     );
 
