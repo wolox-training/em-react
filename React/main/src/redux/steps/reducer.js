@@ -1,10 +1,11 @@
+import Immutable from 'seamless-immutable';
 import { createReducer } from 'redux-recompose';
 
-const initialState = {
+const initialState = Immutable({
   stepNumber: 0
-};
+});
 
-const addStep = (state, action) => ({ ...state, [action.target]: action.payload });
+const addStep = (state, action) => state.merge({ [action.target]: action.payload });
 
 const reducerDescription = {
   ADD_STEP: addStep
