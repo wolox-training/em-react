@@ -44,12 +44,27 @@ const actionCreators = {
       });
     }
   },
-  setUserData: data => async dispatch => {
+  updateUserData: data => async dispatch => {
     dispatch({ type: actions.UPDATE_USER_DATA_LOADING, target: 'updateUserData' });
     try {
-      if (!data.id) throw new Error(`There's no ID for the user to be updated`);
-      const response = await UserActions.updateUser(data.id, data);
-      console.log(response);
+      const lsData = localStorage.getItem('auth');
+      const id = JSON.parse(lsData).userID;
+      if (!id) throw new Error(`There's no ID for the user to be updated`);
+      const userDataRes = await UserActions.getUser(id);
+
+      let userData = userDataRes.data[0];
+      userData = {
+        ...userData,
+        ...data
+      };
+      const response = await UserActions.updateUser(id, userData);
+      const user = response.data[0];
+      if (!user) throw new Error(`Something happened on the server side.`);
+      dispatch({
+        type: actions.UPDATE_USER_DATA_SUCCESS,
+        target: 'updateUserData',
+        payload: user
+      });
     } catch (err) {
       dispatch({
         type: actions.UPDATE_USER_DATA_FAILURE,

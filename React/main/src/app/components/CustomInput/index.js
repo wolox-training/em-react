@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 
 import style from './styles.scss';
 
-const CustomInput = ({ name, input, label, type, meta, maxLength, defaultValue, className }) => {
+const CustomInput = ({ name, input, label, type, meta, maxLength, className }) => {
   const showingError = meta.error && !meta.active && !meta.pristine;
-  input.value = !meta.active && !meta.dirty ? defaultValue : input.value;
 
   return (
     <div className={[style['custom-input'], className].join(' ')}>

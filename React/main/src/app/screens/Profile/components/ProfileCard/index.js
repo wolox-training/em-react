@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Image from '~components/Image';
 
 import TextHolder from '~components/TextHolder';
+
+import userActions from '~/../redux/users/actions';
 
 import style from './styles.scss';
 import EditProfileForm from './components/EditProfileForm';
@@ -13,9 +16,15 @@ class ProfileCard extends Component {
     isEditing: false
   };
 
-  onSubmit = () => {
-    console.log('here');
+  onSubmit = async val => {
+    await this.props.updateUserData(val);
+    await this.props.getUserData();
   };
+
+  getInitialValues = data => ({
+    name: data.name,
+    icon: data.icon
+  });
 
   toggleEditing = e => {
     e.preventDefault();
@@ -28,7 +37,14 @@ class ProfileCard extends Component {
     const { data } = this.props;
 
     if (isEditing) {
-      return <EditProfileForm data={data} onCancel={this.toggleEditing} onSubmit={this.onSubmit} />;
+      const { name, icon } = data;
+      return (
+        <EditProfileForm
+          initialValues={this.getInitialValues({ name, icon })}
+          onCancel={this.toggleEditing}
+          onSubmit={this.onSubmit}
+        />
+      );
     }
 
     return (
@@ -56,7 +72,19 @@ class ProfileCard extends Component {
 }
 
 ProfileCard.propTypes = {
-  data: PropTypes.objectOf(PropTypes.any)
+  data: PropTypes.objectOf(PropTypes.any),
+  updateUserData: PropTypes.func,
+  getUserData: PropTypes.func
 };
 
-export default ProfileCard;
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = dispatch => ({
+  updateUserData: values => dispatch(userActions.updateUserData(values)),
+  getUserData: () => dispatch(userActions.getUserData())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProfileCard);

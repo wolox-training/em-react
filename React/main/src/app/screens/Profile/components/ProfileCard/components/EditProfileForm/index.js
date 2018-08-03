@@ -9,24 +9,17 @@ import { isIcon, maxLength } from '~/../global/validations';
 import style from './styles.scss';
 
 const EditProfileForm = props => {
-  const { valid, onCancel, data } = props;
+  const { onCancel } = props;
+
   return (
     <form className={style['profile-card']} onSubmit={props.handleSubmit}>
       <div className={style['profile-form']}>
-        <Field
-          name="name"
-          label="Name"
-          component={CustomInput}
-          type="text"
-          validate={[maxLength]}
-          defaultValue={data.name}
-        />
+        <Field name="name" label="Name" component={CustomInput} validate={[maxLength]} />
         <Field
           name="icon"
           label="Icon"
           component={CustomInput}
           validate={[isIcon]}
-          defaultValue={data.icon}
           maxLength={2}
           className={style.iconInput}
         />
