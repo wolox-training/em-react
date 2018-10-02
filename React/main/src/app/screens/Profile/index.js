@@ -4,21 +4,29 @@ import { connect } from 'react-redux';
 
 import userActions from '~/../redux/users/actions';
 
+import { timeout } from '~/../global/utils';
+
+import LoadingPage from '~components/LoadingPage';
+
 import style from './styles.scss';
 import ProfileCard from './components/ProfileCard';
 
 class Profile extends Component {
-  componentDidMount() {
+  async componentDidMount() {
+    await timeout(3000);
     this.props.getUserData();
   }
 
   render() {
-    const { userData } = this.props;
-    return (
+    const { userData, userDataError, userDataLoading } = this.props.userData;
+
+    const ProfileHandler = LoadingPage(
       <div className={style['profile-page']}>
         <ProfileCard data={userData} />
       </div>
     );
+
+    return <ProfileHandler loaded={!userDataLoading} error={userDataError} />;
   }
 }
 
@@ -28,7 +36,7 @@ Profile.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  userData: state.user.userData
+  userData: state.user
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -6,7 +6,7 @@ import Board from '~components/Board';
 
 import { STRINGS } from '~/../global/constants';
 
-import { calculateWinner } from '~/../global/utils';
+import { calculateWinner, timeout } from '~/../global/utils';
 
 import { toggleXIsNext } from '~/../redux/turns/actions';
 
@@ -14,7 +14,10 @@ import { addStep } from '~/../redux/steps/actions';
 
 import movesActions from '~/../redux/moves/actions';
 
+import LoadingPage from '~components/LoadingPage';
+
 import style from './styles.scss';
+
 
 class Game extends Component {
   state = {
@@ -26,6 +29,7 @@ class Game extends Component {
   };
 
   async componentDidMount() {
+    await timeout(1000); // Simulates delay
     await this.props.getWinningMoves();
   }
 
@@ -38,6 +42,10 @@ class Game extends Component {
         </li>
       );
     });
+
+  retryConnection = async () => {
+    await this.props.getWinningMoves();
+  }
 
   handleClick = i => {
     const { winningMoves, userData } = this.props;
@@ -69,9 +77,7 @@ class Game extends Component {
 
   render() {
     const { history } = this.state;
-    const { stepNumber, winningMoves, userData } = this.props;
-
-    if (!winningMoves.length) return <div>Not yet</div>;
+    const { stepNumber, winningMoves, winningMovesError, userData } = this.props;
 
     const current = history[stepNumber] || history[0];
     const moves = this.getMovesHistory();
@@ -81,7 +87,7 @@ class Game extends Component {
       ? `Da winner is: ${winner}`
       : `Next player: ${this.props.xIsNext ? icon : STRINGS.O}`;
 
-    return (
+    const BoardHandler = LoadingPage(
       <div className={style.game}>
         <div className={style['game-board']}>
           <Board squares={current.squares} onClick={this.handleClick} />
@@ -92,12 +98,17 @@ class Game extends Component {
         </div>
       </div>
     );
+
+    return (
+      <BoardHandler loaded={!!winningMoves.length} error={winningMovesError} onError={this.retryConnection} />
+    );
   }
 }
 
 const mapStateToProps = state => ({
   xIsNext: state.turns.xIsNext,
   stepNumber: state.steps.stepNumber,
+  winningMovesError: state.winningMoves.winningMovesError,
   winningMoves: state.winningMoves.winningMoves,
   userData: state.user.userData
 });
@@ -114,6 +125,7 @@ Game.propTypes = {
   stepNumber: PropTypes.number.isRequired,
   addStep: PropTypes.func.isRequired,
   getWinningMoves: PropTypes.func.isRequired,
+  winningMovesError: PropTypes.bool,
   winningMoves: PropTypes.arrayOf(PropTypes.any),
   userData: PropTypes.objectOf(PropTypes.any)
 };
